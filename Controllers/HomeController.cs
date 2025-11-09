@@ -11,19 +11,32 @@ using System.Linq;
 using System;
 using NewCoreProject.Helpers;
 using Microsoft.EntityFrameworkCore;
+using NewCoreProject.Repositories;
 
 namespace NewCoreProject.Controllers
 {
     public class HomeController : Controller
     {
+      private readonly IGenericRepository<User> _userRepo;
+        private readonly IGenericRepository<Product> _productRepo;
+        private readonly IGenericRepository<Category> _categoryRepo;
+        private readonly IGenericRepository<Order> _orderRepo;
         private readonly ILogger<HomeController> _logger;
-        private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
 
-        public HomeController(ILogger<HomeController> logger, AppDbContext context, IWebHostEnvironment env)
+        public HomeController(
+     ILogger<HomeController> logger,
+     IGenericRepository<User> userRepo,
+     IGenericRepository<Product> productRepo,
+     IGenericRepository<Category> categoryRepo,
+     IGenericRepository<Order> orderRepo,
+     IWebHostEnvironment env)
         {
             _logger = logger;
-            _context = context;
+            _userRepo = userRepo;
+            _productRepo = productRepo;
+            _categoryRepo = categoryRepo;
+            _orderRepo = orderRepo;
             _env = env;
         }
         public IActionResult IndexCustomer() 
@@ -50,43 +63,49 @@ namespace NewCoreProject.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult SignUp(User user, string passwordConfirm)
         {
-            if (_context.User.Any(u => u.Admin_Email == user.Admin_Email))
+            if (_userRepo.GetAll().Any(u => u.Admin_Email == user.Admin_Email))
                 ModelState.AddModelError("Admin_Email", "Email already registered.");
+
             if (user.Admin_Password != passwordConfirm)
                 ModelState.AddModelError("Admin_Password", "Passwords do not match.");
+
             if (!ModelState.IsValid) return View(user);
 
             user.Admin_Password = Hash(user.Admin_Password ?? "");
             user.CreatedAt = DateTime.Now;
             user.IsActive = true;
 
-            _context.User.Add(user);
-            _context.SaveChanges();
-            SaveSession(user);
+            _userRepo.Add(user);
+            _userRepo.Save();
 
+            SaveSession(user);
             TempData["Success"] = $"Account created successfully! Welcome, {user.Admin_Name}";
             return RedirectToAction("Login");
         }
+
         // ---------- Login ----------
         public IActionResult Login() => View();
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Login(User u, string password)
         {
-            var user = _context.User.FirstOrDefault(d => d.Admin_Email == u.Admin_Email);
+            var user = _userRepo.GetAll().FirstOrDefault(d => d.Admin_Email == u.Admin_Email);
             if (user == null || user.Admin_Password != Hash(password))
             {
                 ViewBag.Error = "Invalid password or username";
                 return View(u);
             }
+
             if (!user.IsActive)
             {
                 ViewBag.Error = "Your account is not active, please contact support";
                 return View(u);
             }
+
             SaveSession(user);
             TempData["Success"] = $"Welcome, {user.Admin_Email}";
             return RedirectToAction("IndexCustomer", "Home");
         }
+
         // ---------- Logout ----------
         public IActionResult Logout()
         {
@@ -164,15 +183,16 @@ namespace NewCoreProject.Controllers
         public IActionResult DisplayProduct(int? id)
         {
             Shop s = new Shop();
-            s.Cate = _context.Categories.Include(c => c.Products).ToList();
+            s.Cate = _categoryRepo.GetAll().ToList();
 
             if (id == null)
-                s.Pro = _context.Products.ToList();
+                s.Pro = _productRepo.GetAll().ToList();
             else
-                s.Pro = _context.Products.Where(m => m.Category_Fid == id).ToList();
+                s.Pro = _productRepo.GetAll().Where(m => m.Category_Fid == id).ToList();
 
             return View(s);
         }
+
         public IActionResult Feedback()
         {
             return View();
@@ -182,7 +202,7 @@ namespace NewCoreProject.Controllers
         {
             var list = HttpContext.Session.GetObject<List<Product>>("mycart") ?? new List<Product>();
 
-            var product = _context.Products.FirstOrDefault(p => p.Product_Id == id);
+            var product = _productRepo.GetAll().FirstOrDefault(p => p.Product_Id == id);
             if (product != null)
             {
                 product.Prod_Quantity = 1;
@@ -247,8 +267,7 @@ namespace NewCoreProject.Controllers
 
             double totalAmount = HttpContext.Session.GetObject<double>("totalAmount");
             double convertedAmount = totalAmount / 282; // Example conversion rate
-
-            return Redirect($"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sb-343yy341072387@personal.example.com&item_name=TheWayShopProducts&return=https://localhost:44369/Home/OrderBooked&amount={convertedAmount}");
+            return Redirect($"https://sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sb-lj439s41015447@personal.example.com&item_name=TheWayShopProducts&amount={convertedAmount}&currency_code=USD&return=https://localhost:44369/Home/OrderBooked&cancel_return=https://localhost:44369/Home/CancelOrder");
         }
 
         // ✅ Order Confirmation
