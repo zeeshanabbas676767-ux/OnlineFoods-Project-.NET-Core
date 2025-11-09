@@ -23,6 +23,14 @@ The application is structured to support both a public-facing customer store and
 * **Dedicated Layout**: A distinct, modern admin dashboard layout (`_LayoutAdmin.cshtml`) for improved management experience.
 
 ---
+## 🔹 Architectural Improvements
+* **Refactored Controllers to Use Generic Repositories**: All CRUD operations in controllers no longer directly depend on Entity Framework Core.
+Instead, controllers now utilize Generic Repositories, which handle database operations through a reusable, decoupled interface.
+
+* **Benefits of Generic Repositories**:
+Reduces repetitive code across multiple controllers.
+Makes unit testing easier by allowing mock repositories instead of a real database.
+Supports a clean, scalable, and maintainable architecture for future development.
 
 ## 🛠️ Technologies Used
 
