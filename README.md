@@ -60,19 +60,23 @@ Payment Gateway: PayPal Sandbox
 
 ---
 
-## 🗂️ Project Structure    NOTE: All Screenshots are in folder of Screenshot in project root.
+## 🗂️ Project Structure  
+
 ### 🔹 User Admin
-![ Dashboard]( UserAdmin.png)
+![User Admin](Screenshot/UserAdmin.png)
+
 ### 🔹 Dashboard
-![ Dashboard]( Dashboard.png)
+![Dashboard](Screenshot/Dashboard.png)
+
 ### 🔹 Carts
-![ Carts]( Carts.png)
+![Carts](Screenshot/Carts.png)
+
 ### 🔹 Products-Bag
-![ Products-Bag]( Products-Bag.png)
+![Products-Bag](Screenshot/Products-Bag.png)
+
 ### 🔹 Products
-![ Products]( Products.png)
+![Products](Screenshot/Products.png)
+
 ### 🔹 All-Products
-![ All-Products]( All-Products.png)
-
-
+![All-Products](Screenshot/All-Products.png)
 
