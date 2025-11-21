@@ -5,28 +5,40 @@
     int totalCartItems = Model.Sum(p => p.Prod_Quantity);
     decimal totalCartBill = Model.Sum(p => p.Product_SalePrice.GetValueOrDefault() * p.Prod_Quantity);
 }
+<style>
+    #bagDropdownToggle.dropdown-toggle::after {
+        display: none !important;
+    }
+    .view-cart{
+        background-color:dodgerblue;
+        color:white;
+    }
+    .view-cart:hover{
+        background-color:mediumblue;
+        color:white;
+    }
+</style>
 
-<li class="nav-item dropdown me-5" style="width: 40px; position: relative;">
+<li class="nav-item dropdown me-5 " style="width: 40px; position: relative;">
     <a id="bagDropdownToggle"
        class="nav-link Custom-btn dropdown-toggle"
        href="#"
        data-bs-toggle="dropdown"
        aria-haspopup="true"
        data-bs-auto-close="outside"
-       aria-expanded="false"
-       style="padding-right: 1.5rem;">
-        <i class="fa fa-shopping-bag" style="margin: auto;"></i>
+       aria-expanded="false">
+        <i class="fa fa-shopping-bag" style="font-size:25px;margin: auto;color:white"></i>
 
         @if (totalCartItems > 0)
         {
             <span class="badge rounded-pill bg-danger"
-                  style="position: absolute; top: 0; right: -5px; font-size: 0.7em;">
+                  style="position: absolute; top: 0; right: -15px; font-size: 0.7em;">
                 @totalCartItems
             </span>
         }
     </a>
 
-    <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="bagDropdownToggle" style="min-width: 500px;">
+    <div class="dropdown-menu dropdown-menu-right p-3" aria-labelledby="bagDropdownToggle" style="min-width: 500px;">
         @if (Model.Any())
         {
             <h6 class="dropdown-header text-center border-bottom pb-2 mb-2"><strong style="font-size:17px">🛒 Shopping Cart</strong> (@Model.Count items)</h6>
@@ -35,8 +47,9 @@
                 @foreach (var item in Model) // Add this Model.Take(3) if you want to show a few items, limit as needed, 
                 {
                     <li class="d-flex align-items-center mb-2 pb-2 border-bottom">
-                        <img src="@Url.Content(item.Product_Picture)" alt="Product" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;" class="rounded">
-                        <div class="flex-grow-1">
+                        
+                        <img class="img-fluid rounded" src="@Url.Content(item.Product_Picture)" alt="Product" style="width: 60px; height: 40px; margin-right: 10px;">
+                        <div class="flex-grow-1" style="width:100px">
                             <h6 class="mb-1"style="font-weight:800">@item.Product_Name</h6>
                             <small class="text-muted"><b>Quantity:</b> @item.Prod_Quantity</small><br />
                             <small class="text-muted"><b>Rs.</b> @item.Product_SalePrice</small><br />
@@ -56,15 +69,22 @@
                 <span>Total:</span>
                 <span>Rs. @totalCartBill</span>
             </div>
+            <button type="button" class="btn btn-sm col-md-12 mt-3 view-cart"
+                    onclick="window.location='@Url.Action("Cart","Home")'">
+                View Cart & Checkout
+            </button>
 
-            <a href="@Url.Action("Cart", "Home")" class="btn btn-primary btn-sm d-block mt-3">View Cart & Checkout</a>
+            @*    <a href="@Url.Action("Cart", "Home")" class="btn btn-sm mt-3 view-cart">View Cart & Checkout</a> *@
         }
         else
         {
             <div class="text-center p-2">
-                Your cart is empty.
+                Your Shopping Cart is Empty
             </div>
-            <a href="@Url.Action("DisplayProduct", "Home")" class="btn btn-primary col-md-5 btn-sm d-block mt-2"style="margin:auto">Go Shopping</a>
+            <button type="button" class="btn btn-sm col-md-12 mt-3 view-cart"
+                    onclick="window.location='@Url.Action("DisplayProduct", "Home")'">
+               Go Shopping!
+            </button>
         }
     </div>
 </li>

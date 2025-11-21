@@ -4,111 +4,183 @@
 @{
     var userIdInt = HttpContextAccessor.HttpContext?.Session.GetInt32("Admin_Id") ?? 0;
     var userId = userIdInt > 0 ? userIdInt.ToString() : ""; // for JS use
-    var Name = HttpContextAccessor.HttpContext?.Session.GetString("Admin_Name");
     var email = HttpContextAccessor.HttpContext?.Session.GetString("Admin_Email");
+    var Name = HttpContextAccessor.HttpContext?.Session.GetString("Admin_Name");
     var profileImage = HttpContextAccessor.HttpContext?.Session.GetString("ProfileImage")
                        ?? Url.Content("~/images/admin.png");
-    var uploadUrl = Url.Action("UploadProfileImage", "Home");
 }
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Admin panel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - TheWayShop</title>
     <!-- BOOTSTRAP STYLES-->
 
-@*     <link href="~/Content/Admin/assets/css/bootstrap.css" rel="stylesheet" />*@
+    @*     <link href="~/Content/Admin/assets/css/bootstrap.css" rel="stylesheet" />*@
     <!-- FONTAWESOME STYLES-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/template/css/bootstrap.css">
 
     <link rel="stylesheet" href="~/template/vendors/iconly/bold.css">
-
+    <link rel="stylesheet" href="~/template/css/bootstrap.css">
     <link rel="stylesheet" href="~/template/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="~/template/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="~/template/css/app.css">
     <link rel="shortcut icon" href="~/template/images/favicon.svg" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
-
-    <link href="~/images/_authentication.css" rel="stylesheet" />
-	<link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/all.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <style>
- 
-        .download-button {
-            position: relative;
-            display: inline-flex;
+        :root {
+            --sidebar-bg: #1e1e2d;
+            --sidebar-hover: #29293d;
+            --text-color: #ffffff;
+            --main-bg: #f4f4f8;
+        }
+
+        /* --- Layout --- */
+        body {
+            margin: 0;
+            display: flex;
+            font-family: "Segoe UI", sans-serif;
+            background: var(--main-bg);
+        }
+
+        #sidebar {
+            background: var(--sidebar-bg);
+            width: 250px;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-color);
+            overflow: visible; /* important fix */
+            position: relative; /* allows dropdown to show */
+            z-index: 2000; /* stays above main */
+        }
+
+
+            /* Collapsed sidebar */
+            #sidebar.collapsed {
+                width: 70px;
+            }
+
+        /* --- Header / Logo --- */
+        .sidebar-header {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 25px;
-            overflow: hidden;
-            cursor: pointer;
-            /* base look */
-            background-color: dodgerblue;
-            /*  background-color: dodgerblue; */ /* #4CAF50 */
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            transition: color 0.4s ease-in-out;
+            justify-content: space-between;
+            padding: 18px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
-            /* text container (always above everything) */
-            .download-button span {
-                position: relative;
-                z-index: 2; /* make text the topmost layer */
-                transition: color 0.4s ease-in-out;
-            }
-
-            /* black overlay behind text */
-            .download-button::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background-color: lawngreen;
-                z-index: 1; /* below text, above green background */
-                transform: scaleX(0);
-                transform-origin: right;
-                transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
-                border-radius: 25px;
-            }
-
-            /* green base behind everything */
-            .download-button::after {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background-color: dodgerblue;
-                /* background-color: dodgerblue; */
-                z-index: 0; /* very back */
-                border-radius: 25px;
-            }
-
-            /* on hover */
-            .download-button:hover::before {
-                transform: scaleX(1);
-                transform-origin: left;
-            }
-
-            /* text turns white on hover */
-            .download-button:hover span {
-                color: black;
-            }
-
-        .error {
-            border-color: red !important;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
+      /*   #sidebar.collapsed .sidebar-header span {
             display: none;
+        } */
+        /* Hide profile image when sidebar is collapsed */
+        #sidebar.collapsed .sidebar-header .user-menu {
+            display: none !important;
+        }
+
+        /* --- Menu Links --- */
+        .sidebar-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+            .sidebar-link i {
+                font-size: 18px;
+                margin-right: 15px;
+                width: 25px;
+                text-align: center;
+            }
+
+            .sidebar-link:hover {
+                background: var(--sidebar-hover);
+                color:white;
+            }
+
+        /* Hide text when collapsed */
+        #sidebar.collapsed .sidebar-link span {
+            display: none;
+        }
+
+        #sidebar.collapsed .sidebar-link i {
+            margin-right: 0;
+        }
+
+        /* Tooltip when collapsed */
+        #sidebar.collapsed .sidebar-link {
+            position: relative;
+        }
+
+            #sidebar.collapsed .sidebar-link:hover::after {
+                content: attr(data-title);
+                position: absolute;
+                left: 80px;
+                background: #333;
+                padding: 5px 8px;
+                border-radius: 5px;
+                white-space: nowrap;
+                color: #fff;
+
+                left: 85px; /* appears outside the sidebar */
+                top: 50%;
+                transform: translateY(-50%);
+                padding: 6px 10px;
+                font-size: 14px; 
+                z-index: 999;
+                opacity: 1;
+                transition: opacity 0.2s;
+            }
+
+        /* --- Footer --- */
+     /*    .sidebar-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #333;
+        } */
+
+        /* --- Main Content --- */
+        #main {
+            flex: 1;
+            transition: margin-left 0.3s ease;
+            padding: 20px;
+            margin-left: 250px; /* same as sidebar width */
+            position: relative;
+            z-index: 1;
+        }
+
+        #sidebar.collapsed ~ #main {
+            margin-left: 70px; /* collapsed sidebar width */
+        }
+
+
+
+        /* --- Toggle Button --- */
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 20px;
         }
 
         .no-marker {
@@ -117,139 +189,97 @@
             margin-left: 0; /* optional */
         }
 
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        /* Default (light theme) */
-        .user-name,
-        .user-email {
-            color: #000;
-        }
-
-        .logout{
-            background-color:black;
-            color:red;
-        }
-
-        .logout:hover{
-            background-color:black;
-            color:white
-        }
     </style>
 </head>
 <body>
-    <div id="wrapper">
-        <nav class="navbar" style="margin-left:260px;height:10px">
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+        <div class="sidebar-header">
             @if (!string.IsNullOrEmpty(userId))
             {
-                <li>
-                    <a class="dropdown-item fw-semibold logout" style="font-weight:800;border-radius:20px"
-                       href="@Url.Action("Logout", "Home")">
-                        <i class="fa fa-sign-out-alt me-1"></i> Log out
+                <li class="sidebar-item dropdown user-menu no-marker">
+                    <a class="rounded-circle nav-link p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false"
+                       style="display:flex;width:100px;width:50px">
+                        <img src="@profileImage"
+                             alt="User" title="@Name"
+                             class="rounded-circle user-avatar" style="width:50px;height:50px;" />
                     </a>
-                </li>
-            }
-            else
-            {
-
-            }
-           
-        </nav>
-        <!-- Sidebar -->
-        <div id="sidebar" class="active">
-            <div class="sidebar-wrapper active" style="background-color:azure;width:275px">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        @if (!string.IsNullOrEmpty(userId))
-                        {
-                            <li class="sidebar-item dropdown user-menu no-marker">
-                                <a class="rounded-circle nav-link p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false"
-                                   style="display:flex;width:100px">
-                                    <img src="@profileImage"
-                                         alt="User" title="@Name"
-                                         class="rounded-circle user-avatar" style="width:100px;height:100px;cursor:default" />
-                                </a>
-                                <h6 class="user-name">Admin: @Name</h6>
-                            </li>
-
-                        }
-                        else
-                        {
-                            <li class="gap-2 mt-1 d-inline-flex">
-                                <button class="download-button" style="" onclick="location.href='@Url.Action("Login", "Home")'">
-                                    <span><strong>LogIn</strong> <i class="icon-download"></i></span>
-                                </button>
-                                <button class="download-button" onclick="location.href='@Url.Action("SignUp", "Home")'">
-                                    <span><strong>SignUp</strong> <i class="icon-download"></i></span>
-                                </button>
-                            </li>
-                        }
-
-                        <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar menu items -->
-                <div class="sidebar-menu">
-                    <ul class="menu">
-                        <li class="sidebar-item">
-                            <a href="@Url.Action("IndexAdmin", "Home")" class="sidebar-link">
-                                <i class="bi bi-house-fill"></i>
-                                <span>Dashboard</span>
+                   @*  <span class="user-name" style="font-size:16px">@Name</span> *@
+                    <ul class="dropdown-menu dropdown-menu-end user-dropdown shadow" data-bs-auto-close="outside">
+                        <li class="text-center">
+                            <img id="profileImageDropdown" src="@profileImage"
+                                 class="rounded-circle user-avatar mb-2" alt="Avatar"
+                                 style="cursor:default;width:100px;height:100px" title="@Name" />
+                            @*    <input type="file" id="imageUpload" accept="image/*" style="display:none;" /> *@
+                            <div class="fw-semibold">@Name</div>
+                            <small class="text-muted">@email</small>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                            <a href="@Url.Action("IndexCustomer", "Home")" class="dropdown-item" data-title="Back to website"><i class="fa fa-long-arrow-left"></i><span> Back to website</span></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger fw-semibold"
+                               href="@Url.Action("Logout", "Home")">
+                                <i class="fa fa-sign-out-alt me-1"></i> Log out
                             </a>
                         </li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("Index", "Users")"><i class="fa fa-user me-3"></i> Manage Accounts</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("Index", "Categories")"><i class="fa fa-sitemap me-3"></i> Manage Categories</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("Index", "Products")"><i class="fa fa-bag-shopping me-3"></i> Manage Products</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("IndexCustomer", "Home")"><i class="fa fa-long-arrow-left me-3"></i> Back to website</a></li>
+
                     </ul>
-                </div>
+                </li>
 
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
-            </div>
+            }
+            <button class="toggle-btn" id="toggleSidebar" style="cursor:e-resize">
+                <i class="bi bi-list"></i>
+            </button>
         </div>
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
 
-            <div class="page-content">
-                @RenderBody()
-            </div>
+        <nav class="sidebar-menu">
+            <a href="@Url.Action("IndexAdmin", "Home")" class="sidebar-link" data-title="Dashboard"><i class="fa fa-dashboard"></i><span> Dashboard</span></a>
+            <a href="@Url.Action("Index", "Users")" class="sidebar-link" data-title="Manage Accounts"><i class="fa fa-user"></i><span> Manage Accounts</span></a>
+            <a href="@Url.Action("Index", "Categories")" class="sidebar-link" data-title="Manage Categories"><i class="fa fa-sitemap"></i><span> Manage Categories</span></a>
+            <a href="@Url.Action("Index", "Products")" class="sidebar-link" data-title=" Manage Products"><i class="fa fa-bag-shopping"></i><span> Manage Products</span></a>
+           
+            <hr />
+            <a href="@Url.Action("Logout", "Home")" class="sidebar-link" data-title="Logout"><i class="fa fa-sign-out"></i><span>Logout</span></a>
+        </nav>
 
-            <footer class="mt-5">
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>&copy; @DateTime.Now.Year Mazer | Created by: Zeeshan Abbas</p>
-                    </div>
-                    <div class="float-end">
-                        <p>
-                            <a href="#">Home</a> |
-                            <a href="#">Contact</a> |
-                            <a href="#">About</a> |
-                            <a href="#">Terms</a> |
-                            <a href="#">Privacy Policy</a>
-                        </p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-</div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/template/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="~/template/js/bootstrap.bundle.min.js"></script>
-    <script src="~/template/vendors/apexcharts/apexcharts.js"></script>
-    <script src="~/template/js/main.js"></script>
-    <script src="~/template/js/pages/dashboard.js"></script>
+       @*  <div class="sidebar-footer">
+     
+        </div> *@
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main">
+        @RenderBody()
+    </main>
+ 
+    <!-- Script -->
+    <script>
+             const sidebar = document.getElementById("sidebar");
+        const toggleBtn = document.getElementById("toggleSidebar");
+
+        // --- Load sidebar state on page load ---
+        if (localStorage.getItem("sidebar-collapsed") === "true") {
+            sidebar.classList.add("collapsed");
+        }
+
+        // --- Toggle sidebar and save state ---
+        toggleBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("collapsed");
+
+            // save state
+            const isCollapsed = sidebar.classList.contains("collapsed");
+            localStorage.setItem("sidebar-collapsed", isCollapsed);
+        });
+
+                document.querySelectorAll(".user-dropdown").forEach(menu => {
+            menu.addEventListener("click", function (e) {
+                e.stopPropagation(); // prevent dropdown from closing
+            });
+        });
+    </script>
+
 </body>
 </html>
-

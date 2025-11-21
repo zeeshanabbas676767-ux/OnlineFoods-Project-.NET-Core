@@ -4,55 +4,56 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <div class="container-fluid" style="overflow:auto;">
 <div>
-    <h1 class="text-center user-name">User</h1>
+        <h1 class="text-center user-name">Accounts</h1>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Admin_Name)
+            Admin Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Admin_Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Admin_Email)
+          Admin Email
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Admin_Email)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Admin_Password)
+           Admin Password
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Admin_Password)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Admin_Contact)
+          Admin Contact
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Admin_Contact)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Admin_Address)
+           Admin Address
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Admin_Address)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
+           Is Active
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IsActive)
         </dd>
-        <dt class = "col-sm-2">
+      @*   <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ProfileImagePath)
-        </dt>
+        </dt> 
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ProfileImagePath)
-        </dd>
+        </dd> *@
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedAt)
+           Created At
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CreatedAt)

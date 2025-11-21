@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+
+
   <ItemGroup>
     <Content Include=".template.config\template.json" />
   </ItemGroup>

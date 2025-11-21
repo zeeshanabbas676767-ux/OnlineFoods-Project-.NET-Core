@@ -16,8 +16,6 @@ namespace NewCoreProject.Data
         public virtual DbSet<Order_Detail> Order_Detail { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
 
-        public DbSet<Student> Students { get; set; }
-
         public DbSet<NewCoreProject.Models.User> User { get; set; } = default!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

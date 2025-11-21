@@ -1,4 +1,4 @@
-﻿@using NewCoreProject.Models
+﻿ @using NewCoreProject.Models
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @using NewCoreProject.Helpers
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
@@ -30,24 +30,29 @@
     .form-control.is-invalid + .invalid-feedback {
         display: block;
     }
-</style>
-<!-- Start All Title Box -->
-<div class="all-title-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Cart</h2>
-              @*   <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                    <li class="breadcrumb-item active">Cart</li>
-                </ul> *@
-            </div>
-        </div>
-    </div>
+
+    .view-cart {
+        background-color: dodgerblue;
+        color: white;
+    }
+
+        .view-cart:hover {
+            background-color: mediumblue;
+            color: white;
+        }
+</style> 
+<!-- Single Page Header start -->
+<div class="container-fluid py-5" style="background-image:url('@Url.Content("~/3rd New Template/img/cart-page-header-img.jpg")');">
+    <h1 class="text-center text-white display-6" style="font-size:50px">Cart</h1>
+    @*  <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item active text-white">Shop</li>
+    </ol> *@
 </div>
-<!-- End All Title Box -->
+<!-- Single Page Header End -->
 <!-- Start Cart -->
-<div class="cart-box-main py-4">
+ <div class="cart-box-main py-4">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -55,7 +60,7 @@
                     <table class="table table-bordered table-hover text-center bg-white">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Images</th>
+                                <th>Image</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
@@ -70,11 +75,11 @@
                                 {
                                     <tr class="cart-row" data-row="@row">
                                         <td>
-                                            <img class="img-fluid rounded" src="@Url.Content(item.Product_Picture)" alt="Picture" style="width: 60px;" />
+                                            <img class="img-fluid rounded" src="@Url.Content(item.Product_Picture)" alt="Picture" style="width: 80px;height:60px" />
                                         </td>
                                         <td>
                                             <div class="font-weight-bold">@item.Product_Name</div>
-                                            <small class="text-muted">@item.Product_Description</small>
+                                           @*  <small class="text-muted">@item.Product_Description</small> *@
                                         </td>
                                         <td><b>Rs. @item.Product_SalePrice</b></td>
                                         <td>
@@ -99,16 +104,19 @@
                                 }
 
                                 // Save totalAmount in session for PlayNow
-@*                                 HttpContextAccessor.HttpContext?.Session.SetString("totalAmount", totalBill.ToString());
- *@                                HttpContextAccessor.HttpContext?.Session.SetObject("totalAmount", (double)totalBill);
+                   @* HttpContextAccessor.HttpContext?.Session.SetString("totalAmount", totalBill.ToString()); *@         
+                   HttpContextAccessor.HttpContext?.Session.SetObject("totalAmount", (double)totalBill);
 
                             }
                             else
                             {
                                 <tr>
-                                    <td colspan="6" class="text-center text-info" style="font-size:20px">
-                                        Your Shopping Cart is Empty.
-                                        <a href="@Url.Action("DisplayProduct", "Home")" style="font-size:20px" class="btn btn-link">Click Here To Buy!</a>
+                                    <td colspan="6" class="text-center" style="font-size:20px">
+                                        Your Shopping Cart is Empty
+                                        <button type="button" class="btn btn-sm col-md-5 d-block mt-2 view-cart" style="margin:auto"
+                                                onclick="window.location='@Url.Action("DisplayProduct", "Home")'">
+                                            Go Shopping!
+                                        </button>
                                     </td>
                                 </tr>
                             }
@@ -125,9 +133,9 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> 
 
-        @using (Html.BeginForm("PlayNow", "Home", FormMethod.Post, new { id = "playNowForm" }))
+       @using (Html.BeginForm("PlayNow", "Home", FormMethod.Post, new { id = "playNowForm" }))
         {
             <div class="row my-5">
                 <div class="col-lg-6 col-sm-12 mb-4">
@@ -167,12 +175,12 @@
                 </div>
 
                 <div class="col-12 text-right">
-                    <input type="submit" value="Play Now" class="btn btn-primary btn-lg" id="playNowBtn" />
+                    <input type="submit" value="Pay Now" class="btn btn-primary btn-lg" id="playNowBtn" />
                 </div>
             </div>
-        }
+        } 
     </div>
-</div>
+</div> 
 
 <!-- JS Validation (same as before) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

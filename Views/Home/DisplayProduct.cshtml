@@ -4,99 +4,122 @@
     var totalProducts = Model.Cate.Sum(c => c.Products != null ? c.Products.Count : 0);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <style>
     .btn-shine {
-        position: relative;
-        overflow: hidden;
-        z-index: 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
     }
 
-        .btn-shine::before {
-            content: "";  
-            position: absolute;
-            top: 0;
-            left: -75%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient( 120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 100% );
-            transform: skewX(-25deg);
-            z-index: 1;
-        }
+    .btn-shine::before {
+    content: "";  
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient( 120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 100% );
+    transform: skewX(-25deg);
+    z-index: 1;
+    }
 
-        .btn-shine:hover::before {
-            animation: shine 1.5s infinite;
-        }
+    .btn-shine:hover::before {
+    animation: shine 1.5s infinite;
+    }
 
     @@keyframes shine {
-        0% {
-            left: -75%;
-        }
+    0% {
+    left: -75%;
+    }
 
-        100% {
-            left: 125%;
-        }
+    100% {
+    left: 125%;
+    }
     }
 
     .box-img-hover {
-        position: relative;
-        overflow: hidden;
+    position: relative;
+    overflow: hidden;
     }
 
     .mask-icon {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease-in-out;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     }
 
     .products-single:hover .mask-icon {
-        opacity: 1;
-        visibility: visible;
+    opacity: 1;
+    visibility: visible;
     }
 
     .mask-icon a {
-        transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
     }
 
-        .mask-icon a:hover {
-            transform: scale(1.1);
-        }
+    .mask-icon a:hover {
+    transform: scale(1.1);
+    }
 
-/*     .text-truncate-description {
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: normal;
-    } */
-b
+    
+    @@media (max-width: 768px) {
+    .product-image-box
+
+    {
+    height: 250px;
+    }
+
+    }
+
+    .pagination .page-link {
+    color: #007bff;
+    border-radius: 8px;
+    margin: 0 2px;
+    }
+
+    .pagination .active .page-link {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    }
+
+    .pagination .page-item.disabled .page-link {
+    color: #ccc;
+    }
+
+    .product-name-header {
+        /* To ensure the header respects the parent's top-left and top-right rounded corners */
+        border-top-left-radius: 0.25rem; /* Matches Bootstrap's default 'rounded' size */
+        border-top-right-radius: 0.25rem; /* Matches Bootstrap's default 'rounded' size */
+        /* Optional: Increase font size slightly for better visibility */
+        font-size: 1.1rem;
+        font-weight: 600; /* Make text bolder */
+        line-height: 1.5; /* Good line spacing */
+        z-index: 10; /* Ensure it stays above other elements if needed */
+    }
 </style>
 
-<!-- Start All Title Box -->
-<div class="all-title-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Shop</h2>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Shop</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<!-- Single Page Header start -->
+<div class="container-fluid py-5" style="background-image:url('@Url.Content("~/3rd New Template/img/cart-page-header-img.jpg")');">
+    <h1 class="text-center text-white display-6" style="font-size:50px">Shop</h1>
+   @*  <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item active text-white">Shop</li>
+    </ol> *@
 </div>
-<!-- End All Title Box -->
+<!-- Single Page Header End -->
 <!-- Start Shop Page  -->
 <div class="shop-box-inner">
     <div class="container">
@@ -105,116 +128,226 @@ b
                 <div class="product-categori">
                     <div class="filter-sidebar-left">
                         <div class="title-left">
-                            <h2 style="font-family:Arial, sans-serif;color:mediumblue;text-align:center">CATEGORIES</h2>
+                            <h3>Categories</h3>
                         </div>
-                        <div class="list-group" id="list-group-men">
+                        <input type="text" id="categorySearch" class="form-control mb-3"
+                               placeholder="Search categories..." style="font-size: 16px;" />
+                        <div class="list-group" id="list-group-men" style="overflow:auto;max-height:300px">
                             <!-- 🟩 "All Categories" button -->
                             <form method="get" asp-controller="Home" asp-action="DisplayProduct" class="d-grid gap-2 mb-2">
-                                <button type="submit" class="btn btn-primary btn-shine w-100 text-start" style="font-size: 18px; background: linear-gradient(135deg, black, #6610f2);">
+                                <button type="submit" class="btn  btn-dark text-light btn-shine w-100 text-start" style="font-size: 18px; background: linear-gradient(135deg, black, #6610f2);">
                                     All Categories
-                                    <small class="text-bg-success">( @totalProducts )</small>
+                                    <small>( @totalProducts )</small>
                                 </button>
                             </form>
+                            <div id="categoryList">
                             @foreach (var cate in Model.Cate)
                             {
-                                <form method="get" asp-controller="Home" asp-action="DisplayProduct" class="d-grid gap-2 mb-2">
+                                <form method="get" asp-controller="Home" asp-action="DisplayProduct" class="d-grid gap-2 mb-2 category-item">
                                     <input type="hidden" name="id" value="@cate.Category_Id" />
-                                    <button type="submit" class="btn btn-primary btn-shine w-100 text-start" style="font-size: 18px;">
+                                        <button type="submit" class="btn  btn-dark btn-shine w-100 text-start" style="font-size: 18px; background: linear-gradient(135deg, black, #6610f2);">
                                         @cate.Category_Name
-                                        <small class="text-bg-primary">( @cate.Products.Count )</small>
+                                        <small>( @cate.Products.Count )</small>
                                     </button>
                                 </form>
                             }
                         </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
-                <div class="right-product-box">
-                    <div class="product-item-filter row">
-                        <div class="col-12 col-sm-8 text-center text-sm-left">
-                            <div class="toolbar-sorter-right">
-                                <span>Sort by </span>
-                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                                    <option data-display="Select">Nothing</option>
-                                    <option value="1">Popularity</option>
-                                    <option value="2">High Price → High Price</option>
-                                    <option value="3">Low Price → High Price</option>
-                                    <option value="4">Best Selling</option>
-                                </select>
+                        </div>
+                        <div class="filter-price-left mt-5">
+                            <div class="title-left">
+                                <h3>Price</h3>
                             </div>
-                            <p>Showing all 4 results</p>
-                        </div>
-                        <div class="col-12 col-sm-4 text-center text-sm-right">
-                            <ul class="nav nav-tabs ml-auto">
-                                <li>
-                                    <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <div class="row product-categorie-box">
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-                                <div class="row">
-                                    @foreach (var p in Model.Pro)
-                                    {
-
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">
-                                            <div class="products-single position-relative shadow-sm border rounded overflow-hidden bg-white">
-                                                <!-- Image and Sale Tag -->
-                                                <div class="box-img-hover position-relati ve">
-                                                    <div class=" position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded-end text-center">
-                                                        @p.Product_Name
-                                                    </div>
-
-                                                    <img src="@Url.Content(p.Product_Picture)" alt="Image"
-                                                         class="w-100 d-block" style="object-fit: cover;height: 200px;">
-
-                                                    <!-- Overlay with hover icons and button -->
-                                                    <div class="mask-icon d-flex flex-column justify-content-center align-items-center text-center">
-                                                        <ul class="list-inline mb-2">
-                                                            <li class="list-inline-item me-2">
-                                                                <a href="#" data-bs-toggle="tooltip" title="View">
-                                                                    <i class="fas fa-eye text-white fs-5"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li class="list-inline-item me-2">
-                                                                <a href="#" data-bs-toggle="tooltip" title="Compare">
-                                                                    <i class="fas fa-sync-alt text-white fs-5"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <a href="#" data-bs-toggle="tooltip" title="Add to Wishlist">
-                                                                    <i class="far fa-heart text-white fs-5"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                        <a class="btn btn-outline-light btn-sm mt-2" href="@Url.Action("AddToCart", "Home", new { id = p.Product_Id })">
-                                                            <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Product Description -->
-                                                <div class="why-text text-center p-3 bg-light">
-                                                    <h6 class="mb-2 text-truncate-description">@p.Product_Description</h6>
-                                                    <h5 class="text-primary mb-0">Rs. @p.Product_SalePrice</h5>
-                                                </div>
-                                            </div>
+                            <div class="price-box-slider">
+                                <form method="get" asp-controller="Home" asp-action="DisplayProduct">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label>Min Price</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   name="minPrice"
+                                                   placeholder="Rs. 0"
+                                                   value="@ViewBag.MinPrice" />
                                         </div>
 
+                                        <div class="col-6">
+                                            <label>Max Price</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   name="maxPrice"
+                                                   placeholder="Rs. 0"
+                                                   value="@ViewBag.MaxPrice" />
+                                        </div>
+                                    </div>
 
-                                    }
+                                    <button class="btn btn-primary text-light mt-3 w-100" type="submit">Filter</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 fruite">
+                                    @{
+                        // Get the selected category name (if any)
+                        var selectedCategoryId = Context.Request.Query["id"].ToString();
+                        string selectedCategoryName = null;
+
+                        if (!string.IsNullOrEmpty(selectedCategoryId))
+                        {
+                            var category = Model.Cate.FirstOrDefault(c => c.Category_Id.ToString() == selectedCategoryId);
+                            selectedCategoryName = category?.Category_Name;
+                        }
+                    }
+                    @if (Model.Pro == null || !Model.Pro.Any())
+                    {
+                        <div class="text-center py-5">
+                            @if (!string.IsNullOrEmpty(selectedCategoryName))
+                            {
+                                <h1>Category : <strong>@selectedCategoryName</strong></h1>
+                                <h4 class="text-muted">No products found for this category.</h4>
+                            }
+
+                            @if (ViewBag.MinPrice != null && ViewBag.MaxPrice != null)
+                            {
+                                <h2>
+                                    No products found between this range<br />
+                                    <strong>Rs. @ViewBag.MinPrice – Rs. @ViewBag.MaxPrice</strong>
+                                </h2>
+                            }
+                            else
+                            {
+                                <h2 class="text-danger"></h2>
+                            }
+                        </div>
+                    }
+                else
+                {
+                <div class="row g-4 justify-content-center">
+                  @foreach (var p in Model.Pro)
+                                       {
+                    <div class="col-md-6 col-lg-6 col-xl-4">
+                        <div class="rounded position-relative fruite-item">
+                            <div class="fruite-img">
+                                <img src="@Url.Content(p.Product_Picture)"  class="img-fluid w-100 rounded-top" style="height:200px;width:50px" alt="">
+                            </div>
+                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">@p.Product_Name</div>
+                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                        <p>@p.Product_Description</p>
+                                <div class="justify-content-between flex-lg-wrap">
+                                            <p class="text-dark fs-5 fw-bold mb-0">Rs. @p.Product_SalePrice</p>
+                                            <a href="@Url.Action("AddToCart", "Home", new { id = p.Product_Id })" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                 </div>
                             </div>
-                           @*  <div role="tabpanel" class="tab-pane fade" id="list-view">
+                        </div>
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+            @if (ViewBag.TotalPages > 1)
+            {
+                <nav aria-label="Page navigation" class="mt-5">
+                    <ul class="pagination justify-content-center gap-2" style="display:flex">
+
+                        <!-- Previous Button -->
+                        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+
+                        
+                            <form
+                                  asp-action="DisplayProduct"
+                                  asp-route-id="@ViewBag.CategoryId"
+                                  asp-route-page="@(ViewBag.CurrentPage - 1)"
+                                  method="get">
+                                <button type="submit" class="page-link">Previous</button>
+                            </form>
+
+                        </li>
+
+                        <!-- Page Numbers -->
+                        @{
+                            int startPage = Math.Max(1, ViewBag.CurrentPage - 2);
+                            int endPage = Math.Min(ViewBag.TotalPages, ViewBag.CurrentPage + 2);
+
+                            for (int i = startPage; i <= endPage; i++)
+                            {
+                                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                    <form
+                                       asp-action="DisplayProduct"
+                                       asp-route-id="@ViewBag.CategoryId"
+                                       asp-route-page="@i">
+                                        <button type="submit" class="page-link">@i</button>
+                                    </form>
+                                </li>
+                            }
+                        }
+
+                        <!-- Fast Forward (10 pages) -->
+                        @if (ViewBag.CurrentPage + 10 <= ViewBag.TotalPages)
+                        {
+                            <li class="page-item" title="Seek ahead 10+">
+                                <form
+                                   asp-action="DisplayProduct"
+                                   asp-route-id="@ViewBag.CategoryId"
+                                   asp-route-page="@(ViewBag.CurrentPage + 10)">
+                                    <button type="submit" class="page-link">>></button>
+                                </form>
+                            </li>
+                        }
+
+                        <!-- Next Button -->
+                        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                            <form
+                               asp-action="DisplayProduct"
+                               asp-route-id="@ViewBag.CategoryId"
+                               asp-route-page="@(ViewBag.CurrentPage + 1)">
+                                <button type="submit" class="page-link">Next</button>
+                            </form>
+                        </li>
+
+                    </ul>
+                </nav>
+            }
+            </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        const searchInput = document.getElementById("categorySearch");
+        const categoryList = document.getElementById("categoryList");
+        const items = Array.from(categoryList.getElementsByClassName("category-item"));
+
+        searchInput.addEventListener("input", function () {
+            const query = this.value.toLowerCase().trim();
+
+            // Split into matched and unmatched categories
+            const matched = [];
+            const unmatched = [];
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+
+                if (text.includes(query)) {
+                    item.style.display = "block";
+                    matched.push(item);
+                } else {
+                    item.style.display = "block"; // visible but later moved down
+                    unmatched.push(item);
+                }
+            });
+
+            // Reorder DOM — matched first, unmatched next
+            categoryList.innerHTML = "";
+            matched.forEach(item => categoryList.appendChild(item));
+            unmatched.forEach(item => categoryList.appendChild(item));
+        });
+    </script>
+}
+
+
+
+@*  <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <div class="list-view-box">
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -318,15 +451,4 @@ b
                                     </div>
                                 </div>
                             </div> *@
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Shop Page -->
-@section Scripts {
-    <script src="~/Scripts/Jquery.js"></script>
-}
+                          

@@ -13,54 +13,54 @@
             <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Product_Id" />
-                <div class="row g-5" style="display:flex">
+                <div class="row g-3" style="display:flex">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="Product_Name" class="control-label"></label>
+                            <h6 class="control-label">Product Name</h6>
                             <input asp-for="Product_Name" class="form-control" />
                             <span asp-validation-for="Product_Name" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="Product_Description" class="control-label"></label>
+                            <h6 class="control-label">Description</h6>
                             <input asp-for="Product_Description" class="form-control" />
                             <span asp-validation-for="Product_Description" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="Product_PurchasePrice" class="control-label"></label>
+                            <h6 class="control-label">Purchase Price</h6>
                             <input asp-for="Product_PurchasePrice" class="form-control" />
                             <span asp-validation-for="Product_PurchasePrice" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
-                <div class="row g-5" style="display:flex">
-                    <div class="col-md-4">
+                <div class="row g-3" style="display:flex">
+                    <div class="col-md-4 mt-4">
                         <div class="form-group">
-                            <label asp-for="Product_SalePrice" class="control-label"></label>
+                            <h6 class="control-label">Sale Price</h6>
                             <input asp-for="Product_SalePrice" class="form-control" />
                             <span asp-validation-for="Product_SalePrice" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-4">
                         <div class="form-group">
-                            <label asp-for="Product_Picture" class="control-label"></label>
-                         @*    <input asp-for="Product_Picture" class="form-control" /> *@
+                            <h6 class="control-label">Picture</h6>
+                            @*    <input asp-for="Product_Picture" class="form-control" /> *@
                             <input asp-for="Product_Picture" type="file" name="Pro_Pic" style=" width:230px" />
                             <img src="@Url.Content(Model.Product_Picture)" alt="Product Image" style="width: 100px; height: 100px;" />
                             <span asp-validation-for="Product_Picture" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-4">
                         <div class="form-group">
-                            <label asp-for="Category_Fid" class="control-label"></label>
+                            <h6 class="control-label">Category</h6>
                             <select asp-for="Category_Fid" class="form-control" asp-items="ViewBag.Category_Fid"></select>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-4">
                     <input type="submit" value="Create" class="btn btn-primary" />
                     <button asp-action="Index" class="btn btn-secondary">Back</button>
                 </div>

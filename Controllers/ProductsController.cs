@@ -102,6 +102,12 @@ namespace NewCoreProject.Controllers
 
             if (ModelState.IsValid)
             {
+                existing.Product_Name = product.Product_Name;
+                existing.Product_PurchasePrice = product.Product_PurchasePrice;
+                existing.Product_SalePrice = product.Product_SalePrice;
+                existing.Category_Fid = product.Category_Fid;
+                existing.Product_Description = product.Product_Description;
+                existing.Pro_Pic = product.Pro_Pic;
                 // Handle new image
                 if (Pro_Pic != null)
                 {
@@ -119,14 +125,11 @@ namespace NewCoreProject.Controllers
                         Pro_Pic.CopyTo(stream);
                     }
 
-                    product.Product_Picture = "/images/" + fileName;
-                }
-                else
-                {
-                    product.Product_Picture = existing.Product_Picture;
+                    //product.Product_Picture = "/images/" + fileName;
+                    existing.Product_Picture = "/images/" + fileName;
                 }
 
-                _productRepo.Update(product);
+                _productRepo.Update(existing);
                 _productRepo.Save();
                 return RedirectToAction(nameof(Index));
             }

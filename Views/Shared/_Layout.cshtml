@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @{
     var userIdInt = HttpContextAccessor.HttpContext?.Session.GetInt32("Admin_Id") ?? 0;
     var userId = userIdInt > 0 ? userIdInt.ToString() : ""; // for JS use
@@ -11,642 +12,959 @@
     var uploadUrl = Url.Action("UploadProfileImage", "Home");
 }
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NewCoreProject</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/NewCoreProject.styles.css" asp-append-version="true" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Vanilla Bootstrap v4.2.1 Theme</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-   
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-    <!-- Site Icons -->
-	<link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/all.css" rel="stylesheet" />
-	<link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/style.css" rel="stylesheet" />
-	<link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/responsive.css" rel="stylesheet" />
-	<link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/custom.css" rel="stylesheet" />
-
-    <!-- Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="~/New Template/css/fontawesome.css" rel="stylesheet" />
+
+    <link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/style.css" rel="stylesheet" />
+    <link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/responsive.css" rel="stylesheet" />
+    <link href="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/css/custom.css" rel="stylesheet" />
+
+    <link href="~/New Template/css/owl-carousel.css" rel="stylesheet" />
+    <link href="~/New Template/css/templatemo-main.css" rel="stylesheet" />
+
+    <script src="~/New Template/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	
+    
+    <link href="~/3rd new template/lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+	<link href="~/3rd new template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <!-- Libraries Stylesheet -->
+	<link href="~/3rd new template/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/3rd new template/css/style.css" rel="stylesheet" />
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+/*         @@keyframes popScale {
+            0%
+
+        {
+            transform: translate(-50%, -50%) scale(0.3);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        } */
+
+        @@keyframes popScale {
+            0%
+
+        {
+            transform: translateX(-50%) scale(0.3);
+            opacity: 0;
+        }
+
+        50% {
+            transform: translateX(-50%) scale(1.1);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateX(-50%) scale(1);
+        }
+
+        }
         body {
-            transition: background-color 0.3s ease, color 0.3s ease;
+        transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
+        width: 100%;
+        border-collapse: collapse;
         }
 
         th {
-            text-align: left;
-            padding: 12px;
-            color: #831081; /* soft indigo */
-            font-weight: 600;
+        text-align: left;
+        padding: 12px;
+        color: #831081; /* soft indigo */
+        font-weight: 600;
         }
 
         /*    tr:hover td {
-                    background: rgba(255,255,255,0.05);
-                    transition: background-color 0.3s ease;
-                }*/
+        background: rgba(255,255,255,0.05);
+        transition: background-color 0.3s ease;
+        }*/
         .table-dark tr:hover td {
-            background-color: black;
-            transition: background-color 0.3s ease;
+        background-color: black;
+        transition: background-color 0.3s ease;
         }
 
         .table-dark td {
-            padding: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.5);
-            color: #e5e7eb;
+        padding: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        color: #e5e7eb;
         }
         /* Navbar */
         .navbar {
-            box-shadow: 0 0 10px #111;
-            background: linear-gradient(#000000);
+        box-shadow: 0 0 10px #111;
+        background: linear-gradient(#000000);
         }
 
         .download-button {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 25px;
-            overflow: hidden;
-            cursor: pointer;
-            /* base look */
-            background-color: dodgerblue;
-           /*  background-color: dodgerblue; */ /* #4CAF50 */
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            transition: color 0.4s ease-in-out;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 25px;
+        overflow: hidden;
+        cursor: pointer;
+        /* base look */
+        background-color: dodgerblue;
+        /*  background-color: dodgerblue; */ /* #4CAF50 */
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        transition: color 0.4s ease-in-out;
         }
 
-            /* text container (always above everything) */
-            .download-button span {
-                position: relative;
-                z-index: 2; /* make text the topmost layer */
-                transition: color 0.4s ease-in-out;
-            }
+        /* text container (always above everything) */
+        .download-button span {
+        position: relative;
+        z-index: 2; /* make text the topmost layer */
+        transition: color 0.4s ease-in-out;
+        }
 
-            /* black overlay behind text */
-            .download-button::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background-color:white;
-                z-index: 1; /* below text, above green background */
-                transform: scaleX(0);
-                transform-origin: right;
-                transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
-                border-radius: 25px;
-            }
+        /* black overlay behind text */
+        .download-button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: white;
+        z-index: 1; /* below text, above green background */
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+        border-radius: 25px;
+        }
 
-            /* green base behind everything */
-            .download-button::after {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background-color: dodgerblue;
-                /* background-color: dodgerblue; */
-                z-index: 0; /* very back */
-                border-radius: 25px;
-            }
+        /* green base behind everything */
+        .download-button::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: dodgerblue;
+        /* background-color: dodgerblue; */
+        z-index: 0; /* very back */
+        border-radius: 25px;
+        }
 
-            /* on hover */
-            .download-button:hover::before {
-                transform: scaleX(1);
-                transform-origin: left;
-            }
+        /* on hover */
+        .download-button:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+        }
 
-            /* text turns white on hover */
-            .download-button:hover span {
-                color: black;
-            }
+        /* text turns white on hover */
+        .download-button:hover span {
+        color: black;
+        }
 
         .form-group {
-            margin-bottom: 20px;
+        margin-bottom: 20px;
         }
 
         .password-wrapper {
-            position: relative;
+        position: relative;
         }
 
         .form-control {
-            width: 100%;
-            padding-right: 40px; /* space for the eye icon */
+        width: 100%;
+        padding-right: 40px; /* space for the eye icon */
         }
 
         .toggle-eye {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #555;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #555;
         }
 
         [dir="rtl"] .toggle-eye {
-            right: auto;
-            left: 10px; /* move eye to the left for RTL */
+        right: auto;
+        left: 10px; /* move eye to the left for RTL */
         }
 
         .error {
-            border-color: red !important;
+        border-color: red !important;
         }
 
         .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
         }
 
         .no-marker {
-            list-style-type: none; /* hides bullets/numbers */
-            padding-left: 0; /* removes extra indent */
-            margin-left: 0; /* optional */
+        list-style-type: none; /* hides bullets/numbers */
+        padding-left: 110px; /* removes extra indent */
+        margin-left: 0; /* optional */
         }
 
         .user-avatar {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-         /*    border: 2px solid #111; */
-            transition: transform 0.3s ease;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        /*    border: 2px solid #111; */
+        transition: transform 0.3s ease;
         }
         /* Default (light theme) */
         .user-name,
         .user-email {
-            color: #000;
+        color: #000;
         }
-/*         .custom-navbar {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease;
-            border-radius: 0 0 15px 15px;
+        /*         .custom-navbar {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease;
+        border-radius: 0 0 15px 15px;
         }
 
-            .custom-navbar .navbar-brand img {
-                filter: drop-shadow(0 0 5px #fff);
-            } */
-            .navbar{
-                
-                width:100%;
-            }
+        .custom-navbar .navbar-brand img {
+        filter: drop-shadow(0 0 5px #fff);
+        } */
+        .navbar {
+        width: 100%;
+        }
+
+        /* ===== Modern E-Commerce Button ===== */
         .custom-btn {
-            margin-left: 0px;
-            width: 110px;
-            position: relative;
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            border-radius: 6px;
-            overflow: hidden;
-            height: 45px;
-            line-height: 25px;
-            text-align: center;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            font-size: 15px;
             font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            border-radius: 12px;
+            border: 0;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: .3px;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
         }
 
-            /* Text movement */
-            .custom-btn span {
-                display: inline-block;
-                position: relative;
-                animation: moveText 5.2s ease-in-out infinite;
-                z-index: 1;
+            /* Hover – premium glow + scale */
+            .custom-btn:hover {
+                background: linear-gradient(135deg, #6366f1, #4f46e5);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(99, 102, 241, 0.45);
+                color: #fff;
             }
 
-            /* Aurora shine overlay */
-            .custom-btn::before {
-                content: "";
-                position: absolute;
-                top: -100%;
-                left: 0;
-                width: 90%;
-                height: 300%;
-                background: linear-gradient(135deg, #4e54c8, #8f94fb);
-                filter: blur(6px);
-                opacity: 0;
-                z-index: 0;
+            /* Active click effect */
+            .custom-btn:active {
+                transform: scale(0.96);
+                box-shadow: 0 3px 10px rgba(99, 102, 241, 0.25);
             }
 
-        .custom-btn:hover {
-            color: white;
-            background: linear-gradient(135deg, #007bff, #6610f2);
+        /* Optional: smooth fade if used inside nav-links */
+        .nav-link.custom-btn {
+            text-decoration: none !important;
         }
 
-        .Custom-btn {
-            color: white;
-            display: flex;
-            margin-right: 0px;
-            margin-left: 10px;
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #007bff, #6610f2);
-        }
 
-            .Custom-btn:hover {
-                background: linear-gradient(135deg, #6610f2, #007bff);
-            }
+
+
+
+
+
+
+
+
 
         /* Modern search bar */
         .modern-search {
-            position: relative;
-            width: 280px;
-            transition: all 0.3s ease-in-out;
+        position: relative;
+        width: 280px;
+        transition: all 0.3s ease-in-out;
         }
 
-            .modern-search input {
-                width: 100%;
-                padding: 10px 40px 10px 15px;
-                border-radius: 25px;
-                border: 1px solid #6c757d;
-                background-color: #212529;
-                color: #fff;
-                transition: all 0.3s ease;
-            }
+        .modern-search input {
+        width: 100%;
+        padding: 10px 40px 10px 15px;
+        border-radius: 25px;
+        border: 1px solid #6c757d;
+        background-color: #212529;
+        color: #fff;
+        transition: all 0.3s ease;
+        }
 
-                .modern-search input:focus {
-                    outline: none;
-                    background-color: #2c3034;
-                    box-shadow: 0 0 5px rgba(0, 150, 255, 0.5);
-                    border-color: #0d6efd;
-                }
+        .modern-search input:focus {
+        outline: none;
+        background-color: #2c3034;
+        box-shadow: 0 0 5px rgba(0, 150, 255, 0.5);
+        border-color: #0d6efd;
+        }
 
-            .modern-search button {
-                position: absolute;
-                top: 50%;
-                right: 10px;
-                transform: translateY(-50%);
-                border: none;
-                background: transparent;
-                color: #adb5bd;
-                transition: color 0.3s ease;
-            }
+        .modern-search button {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        color: #adb5bd;
+        transition: color 0.3s ease;
+        }
 
-                .modern-search button:hover {
-                    color: #0d6efd;
-                }
+        .modern-search button:hover {
+        color: #0d6efd;
+        }
 
-            /* Optional: glow effect on focus */
-            .modern-search input:focus + button i {
-                color: #0d6efd;
-            }
+        /* Optional: glow effect on focus */
+        .modern-search input:focus + button i {
+        color: #0d6efd;
+        }
 
         /* Responsive */
         @@media (max-width: 768px) {
-            .modern-search
+        .modern-search {
+        width: 100%;
+        }
+        }
+
+
+        @@keyframes popScale {
+        0% {
+        transform: translateX(-50%) scale(0.3);
+        opacity: 0;
+        }
+
+        50% {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 1;
+        }
+
+        100% {
+        transform: translateX(-50%) scale(1);
+        }
+        }
+
+        #Login {
+        display: none; /* hide at start */
+        }
+
+        /* for popup background blur (optional) */
+        #popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(3px);
+        z-index: 9998;
+        }
+
+        @@keyframes popScale {
+        0%
 
         {
-            width: 100%;
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0;
+        }
+
+        100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
         }
 
         }
 
+        .signup-box {
+        /* Set a maximum height relative to the viewport height (vh) */
+        max-height: 90vh; /* Adjust this value (e.g., 70vh, 80vh) */
+        /* Enable vertical scrolling if content exceeds max-height */
+        overflow-y: auto;
+        /* Ensure it's centered and has a defined width/max-width */
+        max-width: 500px; /* Or whatever maximum width you want */
+        margin: 20px auto; /* Add margin to prevent it from touching screen edges */
+        padding: 20px;
+        /* The background color you have (light green) */
+        background-color: #e0ffe0;
+        /* Add some padding/styling for presentation */
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        /*------------------------------------------------------------------------*/
+
+        /* --- CSS Variables for easier theming --- */
+        :root {
+            --avatar-size-sm: 55px;
+            --avatar-size-lg: 100px;
+            --dropdown-width: 300px; /* Adjusted slightly */
+            --primary-color: #0d6efd; /* Replace with your brand color */
+            --auth-btn-bg: #f8f9fa;
+            --auth-btn-hover: #e9ecef;
+        }
+
+        /* =========================================
+           User Dropdown Styles
+           ========================================= */
+
+        /* Ensure the wrapper doesn't have list styles if outside a nav */
+        .app-user-dropdown-wrapper {
+            list-style: none;
+            /* Important for positioning the dropdown correctly relative to this element */
+            position: relative;
+            /* If this is an 'li' in a 'ul' with flex, ensure it participates correctly */
+            display: flex;
+            align-items: center; /* Vertically center avatar if other items are around */
+        }
+
+        /* The clickable toggle area in the navbar */
+        .app-user-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            padding: 4px !important; /* Overriding Bootstrap nav-link padding */
+            transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease;
+            /* Ensure the toggle itself is above other regular content */
+            z-index: 1051;
+        }
+
+            /* Subtle hover effect on the toggle */
+            .app-user-toggle:hover,
+            .app-user-toggle[aria-expanded="true"] {
+                background-color: rgba(var(--bs-primary-rgb), 0.1); /* Bootstrap 5 compatible hover */
+                box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.2);
+            }
+
+            /* Hides the default Bootstrap dropdown arrow */
+            .app-user-toggle.hide-arrow::after {
+                display: none !important;
+            }
+
+        /* Small avatar in the navbar */
+        .app-user-avatar-sm {
+            width: var(--avatar-size-sm);
+            height: var(--avatar-size-sm);
+            object-fit: cover; /* Ensures images don't stretch */
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* The actual dropdown menu container */
+        .app-user-dropdown-menu {
+            width: var(--dropdown-width);
+            /* **CRITICAL FIX 1: z-index** */
+            z-index: 1060 !important; /* Higher than Bootstrap's default modal/navbar z-index (1050/1040) */
+            /* Ensure it doesn't go off-screen on small devices */
+            max-width: calc(100vw - 20px); /* 20px for padding on either side */
+
+            max-height: 80vh; /* Limits height, use calc if you have a fixed header */
+            overflow-y: auto; /* Scroll if content is too tall */
+
+            border: none; /* Relying on shadow for depth */
+            border-radius: 0.75rem;
+            /* **CRITICAL FIX 2: Positioning (for dropdown-menu-end)** */
+            /* If it's still too far right, or you want it left-aligned to the toggle */
+            /* Remove 'dropdown-menu-end' from HTML and uncomment below for left-align */
+            /* left: 0; */
+            /* top: 100%; */
+            /* If 'dropdown-menu-end' is kept, you might sometimes need to nudge it */
+            /* right: 0 !important; If Bootstrap's default isn't quite right. */
+            /* transform: translateX(50%); Adjust if needed, but 'dropdown-menu-end' should handle it */
+        }
+
+        /* Large avatar inside the menu */
+        .app-user-avatar-lg {
+            width: var(--avatar-size-lg);
+            height: var(--avatar-size-lg);
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: default; /* Reset cursor inherited from pointer styles */
+        }
+
+        /* Dropdown item hover improvements */
+        .app-user-dropdown-menu .dropdown-item {
+            padding: 0.6rem 1rem;
+            transition: all 0.2s;
+            color: var(--bs-dark); /* Ensure text color is good */
+        }
+
+            .app-user-dropdown-menu .dropdown-item:hover,
+            .app-user-dropdown-menu .dropdown-item:focus {
+                background-color: rgba(var(--bs-primary-rgb), 0.08);
+                transform: translateX(3px); /* Subtle movement on hover */
+            }
+
+        /* Optional: Add a subtle animation when opening */
+        @@keyframes dropdownFadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .animated-dropdownFadeIn[data-bs-popper] {
+            animation: dropdownFadeIn 0.2s ease-out;
+        }
+
+
+        /* =========================================
+           Auth Buttons (Login/Signup) Styles
+           ========================================= */
+        .app-auth-buttons {
+            list-style: none;
+        }
+
+        .app-btn-auth {
+            border: 1px solid #dee2e6;
+            background-color: var(--auth-btn-bg);
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem; /* Pill shape */
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none; /* Remove underline if it's an anchor */
+        }
+
+            .app-btn-auth:hover {
+                background-color: var(--auth-btn-hover);
+                border-color: #cdd4da;
+                transform: translateY(-1px);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+
+        /* Make signup button stand out slightly more */
+        .app-btn-signup {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+            .app-btn-signup:hover {
+                background-color: color-mix(in srgb, var(--primary-color), black 10%);
+                color: white;
+            }
     </style>
 </head>
+<!--
+Vanilla Template
+https://templatemo.com/tm-526-vanilla
+-->
 <body>
-    <!-- Start Main Top 
-     <div class="main-top">
-        <div class="container-fluid">
-            <div class="row" style="height:50px">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Now Man
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Fashion
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT20
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Now Man
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Fashion
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT20
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="overflow:auto">
-                    <div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                            <option>¥ JPY</option>
-                            <option>$ USD</option>
-                            <option>€ EUR</option>
-                        </select>
-                    </div>
-                    <div class="right-phone-box">
-                        <p>Call US :- <a href="#"> +11 900 800 100</a></p>
-                    </div>
-            @*         <div class="our-link">
-                        <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Our location</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div> *@
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- End Main Top -->
     <!-- Start Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top user-name"style="background-color:white;height:90px">
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top user-name" style="background-color:white;height:90px">
         <div class="container-fluid">
             <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbar-menu">
-                <ul class="navbar-nav ml-auto align-items-center">
-                @*     <li class="nav-item me-4" style="background-color:white">
-                        <a href="@Url.Action("IndexCustomer", "Home")">
-                            <img src="~/images/project-images/favicon.ico" style="width:40px;height:40px" />
+                <ul class="navbar-nav align-items-center">
+
+                    <li class="nav-item me-5">
+                        <a class="rounded-circle" href="@Url.Action("IndexCustomer", "Home")">
+                            <img class="rounded-circle" src="~/3rd New Template/img/logo.png" style="width:80px;height:80px" />
                        </a>
+                    </li> 
+                    <li class="nav-item mx-2">
+                        <a asp-area="" asp-controller="Home" asp-action="IndexCustomer" class="custom-btn"><span style="font-size:15px">Home</span></a>
+                    </li>
+                  @*   <li class="nav-item mx-2">
+                        <a asp-area="" asp-controller="Home" asp-action="About" class="nav-link custom-btn"><span style="font-size:15px">About</span></a>
                     </li> *@
                     <li class="nav-item mx-2">
-                        <a asp-area="" asp-controller="Home" asp-action="IndexCustomer" class="nav-link custom-btn"><span style="font-size:15px">HOME</span></a>
+                        <a asp-area="" asp-controller="Home" asp-action="DisplayProduct" class="custom-btn"><span style="font-size:15px">Shop</span></a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a asp-area="" asp-controller="Home" asp-action="About" class="nav-link custom-btn"><span style="font-size:15px">ABOUT US</span></a>
+                        <a asp-area="" asp-controller="Home" asp-action="Contact" class="custom-btn"><span style="font-size:15px">Contact</span></a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a asp-area="" asp-controller="Home" asp-action="DisplayProduct" class="nav-link custom-btn"><span style="font-size:15px">PRODUCT</span></a>
+                        <a asp-area="" asp-controller="Home" asp-action="Feedback" class="custom-btn me-3"><span style="font-size:15px">Feed back</span></a>
                     </li>
-                    <li class="nav-item mx-2">
-                        <a asp-area="" asp-controller="Home" asp-action="Contact" class="nav-link custom-btn"><span style="font-size:15px">CONTACT US</span></a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a asp-area="" asp-controller="Home" asp-action="Feedback" class="nav-link custom-btn"><span style="font-size:15px">FEED BACK</span></a>
-                    </li>
-              @*       <li class="nav-item dropdown me-5"style="width:40px;"> 
-                        <a id="bagDropdownToggle"
-                           class="nav-link Custom-btn dropdown-toggle"
-                           href="#"
-                           data-toggle="dropdown"
-                           aria-haspopup="true"
-                           data-bs-auto-close="close"
-                           aria-expanded="false">
-                            <i class="fa fa-shopping-bag" style="margin:auto"></i>
-                        </a>
-                    </li> *@
-                    @* Inside your main navbar <ul> where the bag icon was: *@
 
                     @await Component.InvokeAsync("CartSummary")
-                 @*    <div class="search-product">
-                        <form action="#">
-                            <input class="form-control" placeholder="Search here..." type="text">
-                            <button type="submit"> <i class="fa fa-search"></i> </button>
-                        </form>
-                    </div> *@
-             @*        <li class="nav-item d-flex align-items-center" style="width:250px;margin-right:20px">
-                        <div class="modern-search">
-                            <form action="/Products/Search" method="get">
-                                <input  type="text" name="query" placeholder="Search products..." aria-label="Search" />
-                                <button type="submit" title="Search">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </li> *@
+
                     <li class="nav-item d-flex align-items-center" style="width:250px;margin-right:10px">
                         <div class="modern-search">
-                                <input type="text" name="query" placeholder="Search here..." aria-label="Search" />
-                                <button type="submit" title="Search">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
+                            <input type="text" name="query" placeholder="Search here..." aria-label="Search" />
+                            <button type="submit" title="Search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
                         </div>
                     </li>
-
                     @if (!string.IsNullOrEmpty(userId))
                     {
-                        <li class="sidebar-item dropdown user-menu no-marker me-3">
-                            <a class="nav-link p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false"
-                               style="width:50px;border-radius:20px;display:flex">
-                                <img src="@profileImage"
-                                     alt="User" title="@Name"
-                                     class="rounded-circle user-avatar" style="width:60px;height:60px" />
-                            </a>
-                    @*         <strong class="user-name">Hi, @Name</strong> *@
+                        <li class="nav-item dropdown app-user-dropdown-wrapper me-3 me-lg-5">
+                            <a class="nav-link dropdown-toggle app-user-toggle hide-arrow p-0"
+                               href="#"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
 
-                            <ul class="dropdown-menu dropdown-menu-end user-dropdown shadow">
-                                <li class="text-center">
-                                    <img id="profileImageDropdown" src="@profileImage"
-                                         class="rounded-circle user-avatar mb-2" alt="Avatar"
-                                         style="cursor:default;width:100px;height:100px" title="@Name" />
-                                 @*    <input type="file" id="imageUpload" accept="image/*" style="display:none;" /> *@
-                                    <div class="fw-semibold">@Name</div>
-                                    <small class="text-muted">@email</small>
-                                </li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li>
-                                    <a class="dropdown-item text-danger fw-semibold"
-                                       href="@Url.Action("Logout", "Home")">
-                                        <i class="fa fa-sign-out-alt me-1"></i> Log out
-                                    </a>
-                                </li>
-                               
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a asp-area="" asp-controller="Home" asp-action="IndexAdmin" id="bagDropdownToggle"
-                               class="nav-link Custom-btn dropdown-toggle">
-                                Admin panel
+                                <img src="@profileImage"
+                                     alt="User"
+                                     title="@Name"
+                                     class="rounded-circle app-user-avatar-sm" />
                             </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right shadow app-user-dropdown-menu animated-dropdownFadeIn">
+                                <li class="text-center pt-3 px-3 pb-2">
+                                    <img id="profileImageDropdown"
+                                         src="@profileImage"
+                                         class="rounded-circle app-user-avatar-lg mb-3"
+                                         alt="@Name"
+                                         title="@Name" />
+
+                                    <div class="fw-bold fs-5 text-truncate">@Name</div>
+                                    <small class="text-muted text-truncate d-block">@email</small>
+                                </li>
+
+                                <li><hr class="dropdown-divider my-3" /></li>
+
+                                <li class="px-2">
+                                    <button type="button" class="dropdown-item rounded-2 fw-semibold mb-1"
+                                            onclick="window.location='@Url.Action("IndexAdmin", "Home")'">
+                                        <i class="fa fa-user text-primary me-2"></i>  Admin panel
+                                    </button>
+                            @*         <a asp-area="" asp-controller="Home" asp-action="IndexAdmin"
+                                       class="dropdown-item rounded-2 fw-semibold mb-1">
+                                        <i class="fa fa-user text-primary me-2 fw-bold"></i> Admin panel
+                                    </a> *@
+                             
+                                    <button type="button" class="dropdown-item rounded-2 fw-semibold mb-1 text-danger"
+                                            onclick="window.location='@Url.Action("Logout", "Home")'">
+                                        <i class="fa fa-sign-out-alt me-2"></i> Log out
+                                    </button>
+                              </li>
+                            </ul>
                         </li>
                     }
                     else
                     {
-                        <li class="gap-2 mt-1 d-inline-flex">
-                            <button class="download-button" style="" onclick="location.href='@Url.Action("Login", "Home")'">
-                                <span><strong>LogIn</strong> <i class="icon-download"></i></span>
+                        <li class="app-auth-buttons gap-2 mt-1 d-inline-flex align-items-center">
+                            <button class="app-btn-auth" data-bs-toggle="modal" data-bs-target="#LoginModal">
+                                <span><strong>LogIn</strong> <i class="fa fa-sign-in-alt ms-1"></i></span>
                             </button>
-                            <button class="download-button" onclick="location.href='@Url.Action("SignUp", "Home")'">
-                                <span><strong>SignUp</strong> <i class="icon-download"></i></span>
+                            <button class="app-btn-auth app-btn-signup" data-bs-toggle="modal" data-bs-target="#signUpModal">
+                                <span><strong>SignUp</strong> <i class="fa fa-user-plus ms-1"></i></span>
                             </button>
                         </li>
                     }
-                  
+
                 </ul>
 
             </div>
         </div>
     </nav>
 
-    @RenderBody()
+    @await Html.PartialAsync("_SignUpPartial", new NewCoreProject.Models.User())
+    @await Html.PartialAsync("_LoginPartial")
 
-    <!-- Start Footer  -->
-    <footer>
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link">
-                            <h4>Information</h4>
-                            <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Customer Service</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Delivery Information</a></li>
-                            </ul>
+@*     <div class="fixed-side-navbar">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="#home"><span>Home</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#services"><span>Services</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#portfolio"><span>Portfolio</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#our-story"><span>Our Story</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact-us"><span>Contact Us</span></a></li>
+        </ul>
+    </div> *@
+
+
+        @RenderBody()
+
+
+    <!-- Footer Start -->
+
+        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+            <div class="container py-5">
+                <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
+                    <div class="row g-4">
+                        <div class="col-lg-3">
+                        <a class="rounded-circle" href="@Url.Action("IndexCustomer", "Home")">
+                            <img class="rounded-circle" src="~/3rd New Template/img/logo.png" style="width:130px;height:130px" />
+                        </a>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link-contact">
-                            <h4>Contact Us</h4>
-                            <ul>
-                                <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: Skardu (Gilgit-Baltistan)<br>Near Clifton Bridge</p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+92 3448853422">03448853422</a></p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:zeeshanabbas676767@gmail.com">zeeshanabbas676767@gmail.com</a></p>
-                                </li>
-                            </ul>
+                        <div class="col-lg-4">
+                            <div class="position-relative mx-auto">
+                                <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Your Email">
+                                <button type="submit" class="btn btn-primary border-0 border-secondary py-3 px-2 position-absolute rounded-pill text-white" style="top: 0; right: 0;">Subscribe Now</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12 mt-5">
-                        <div class="footer-widget">
-                            <ul>
-                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                            </ul>
+                        <div class="col-lg-5">
+                            <div class="d-flex justify-content-end pt-3">
+                                <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-google-plus"></i></a>
+                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-pinterest-p"></i></a>
+                            <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i class="fab fa-whatsapp"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="row g-5">
+               @*      <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-light mb-3">Why People Like us!</h4>
+                            <p class="mb-4">typesetting, remaining essentially unchanged. It was 
+                                popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
+                            <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
+                        </div>
+                    </div> *@
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex flex-column text-start footer-item">
+                            <h4 class="text-light mb-3">Shop Info</h4>
+                            <a class="btn-link" href="">About Us</a>
+                            <a class="btn-link" href="">Contact Us</a>
+                            <a class="btn-link" href="">Privacy Policy</a>
+                            <a class="btn-link" href="">Terms & Condition</a>
+                            <a class="btn-link" href="">Return Policy</a>
+                            <a class="btn-link" href="">FAQs & Help</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex flex-column text-start footer-item">
+                            <h4 class="text-light mb-3">Account</h4>
+                            <a class="btn-link" href="">My Account</a>
+                            <a class="btn-link" href="">Shop details</a>
+                            <a class="btn-link" href="">Shopping Cart</a>
+                            <a class="btn-link" href="">Wishlist</a>
+                            <a class="btn-link" href="">Order History</a>
+                            <a class="btn-link" href="">International Orders</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-light mb-3">Contact</h4>
+                            <p><i class="fa fa-location"></i> Address: Gilgit-Baltistan (Skardu)</p>
+                            <p><i class="fa fa-envelope"></i> Email: zeeshanabbas676767@gmail.com</p>
+                            <p><i class="fa fa-phone"></i> Phone: 03448853422</p>
+                            <p>Payment Accepted</p>
+                            <img src="~/3rd New Template/img/payment.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            <p class="mt-5">
+                &copy; @DateTime.Now.Year - All Right Reserved | Created By : Zeeshan Abbas | Follow my GitHub link:
+                <a style="color:dodgerblue" href="https://github.com/zeeshanabbas676767-ux">https://github.com/zeeshanabbas676767-ux</a>
+            </p>
             </div>
         </div>
-    </footer>
-    <!-- End Footer  -->
-    <!-- Start copyright  -->
-    <div class="footer-copyright">
-        <p class="footer-company">
-            &copy; @DateTime.Now.Year - TheWayShop | All Right Reserved | Created By : Zeeshan Abbas | Follow my GitHub link: <a style="color:dodgerblue" href="https://github.com/zeeshanabbas676767-ux">https://github.com/zeeshanabbas676767-ux</a>
-        </p>
-    </div>
-    <!-- End copyright  -->
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/jquery-3.2.1.min.js"></script>
+        <!-- Footer End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    @*     <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                    </ul>
+                    <p style="font-size:15px">
+                        &copy; @DateTime.Now.Year - TheWayShop | All Right Reserved | Created By : Zeeshan Abbas | Follow my GitHub link:
+                        <a style="color:dodgerblue" href="https://github.com/zeeshanabbas676767-ux">https://github.com/zeeshanabbas676767-ux</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer> *@
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="~/New Template/js/vendor/bootstrap.min.js"></script>
+	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/jquery-3.2.1.min.js"></script>
 	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/popper.min.js"></script>
 	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/bootstrap.min.js"></script>
 	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/jquery.superslides.min.js"></script>
 	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/bootstrap-select.js"></script>
 	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/inewsticker.js"></script>
 	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/bootsnav.js"></script>
-	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/images-loded.min.js"></script>
-	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/isotope.min.js"></script>
+<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/images-loded.min.js"></script>
+<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/isotope.min.js"></script>
 	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/owl.carousel.min.js"></script>
-	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/baguettebox.min.js"></script>
-	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/form-validator.min.js"></script>
-	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/contact-form-script.js"></script>
+<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/baguettebox.min.js"></script>
+<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/jquery-ui.js"></script>
+<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/jquery.nicescroll.min.js"></script>
+<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/form-validator.min.js"></script>
+<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/contact-form-script.js"></script>
 	<script src="~/templates/thewayshop free website template - free-css.com (1)/thewayshop/js/custom.js"></script>
+
+    <script src="~/New Template/js/plugins.js"></script>
+    <script src="~/New Template/js/main.js"></script>
+    <script src="~/js/MY_JS.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/3rd new template/lib/easing/easing.min.js"></script>
+	<script src="~/3rd new template/lib/waypoints/waypoints.min.js"></script>
+	<script src="~/3rd new template/lib/lightbox/js/lightbox.min.js"></script>
+	<script src="~/3rd new template/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="~/3rd new template/js/main.js"></script>
     <script>
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     const profileImageDropdown = document.getElementById("profileImageDropdown");
-        //     const profileImage = document.querySelector(".user-avatar");
-        //     const imageUpload = document.getElementById("imageUpload");
-
-        //     // 🧩 Get values from Razor (ASP.NET Core)
-
-        //             const userId = '@userId';
-        //             const uploadUrl = '@uploadUrl';
-
-
-        //     if (profileImageDropdown && imageUpload) {
-
-        //         // When user clicks profile image inside dropdown
-        //         profileImageDropdown.addEventListener("click", () => {
-        //             imageUpload.click();
-        //         });
-
-        //         // When user selects a new image
-        //         imageUpload.addEventListener("change", function () {
-        //             const file = this.files[0];
-        //             if (!file) return;
-
-        //             const reader = new FileReader();
-        //             reader.onload = function (e) {
-        //                 const imageData = e.target.result;
-
-        //                 // ✅ Instant preview for both images
-        //                 if (profileImageDropdown) profileImageDropdown.src = imageData;
-        //                 if (profileImage) profileImage.src = imageData;
-        //             };
-        //             reader.readAsDataURL(file);
-
-        //             // ✅ Upload to server
-        //             const formData = new FormData();
-        //             formData.append("file", file);
-        //             formData.append("userId", userId);
-
-        //             fetch(uploadUrl, {
-        //                 method: "POST",
-        //                 body: formData
-        //             })
-        //                 .then(response => response.json())
-        //                 .then(data => {
-        //                     if (data.success) {
-        //                         console.log("✅ Profile image updated successfully");
-        //                     } else {
-        //                         alert("⚠️ Failed to upload image.");
-        //                     }
-        //                 })
-        //                 .catch(err => console.error("❌ Error uploading image:", err));
-        //         });
-        //     }
-
-            // Prevent dropdown close on click inside
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.addEventListener('click', e => e.stopPropagation());
-            });
-        // });
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";
+            }
+            document.getElementById(cityName).style.display = "block";
+        }
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Delegated listener for ALL password toggle icons
+            document.addEventListener("click", function (e) {
+                if (!e.target.classList.contains("toggle-eye")) return;
+
+                const wrapper = e.target.closest(".password-wrapper");
+                if (!wrapper) return;
+
+                const input = wrapper.querySelector("input");
+                if (!input) return;
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    e.target.classList.remove("fa-eye");
+                    e.target.classList.add("fa-eye-slash");
+                    e.target.setAttribute("aria-label", "Hide password");
+                } else {
+                    input.type = "password";
+                    e.target.classList.remove("fa-eye-slash");
+                    e.target.classList.add("fa-eye");
+                    e.target.setAttribute("aria-label", "Show password");
+                }
+            });
+
+            // Confirm password validation for SignUp
+            const passwordField = document.querySelector("#signupPassword");
+            const confirmField = document.querySelector("#signupConfirmPassword");
+            const errorMessage = document.querySelector("#signupErrorMessage");
+
+            if (passwordField && confirmField && errorMessage) {
+                confirmField.addEventListener('input', function () {
+                    if (confirmField.value !== passwordField.value) {
+                        confirmField.classList.add('error');
+                        errorMessage.style.display = 'block';
+                    } else {
+                        confirmField.classList.remove('error');
+                        errorMessage.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+
+
+
+
+
+             const popup = document.getElementById("Login");
+        const overlay = document.getElementById("popup-overlay");
+        const openBtn = document.getElementById("openSignUp");
+
+        // Open popup
+        openBtn.addEventListener("click", function () {
+            popup.style.display = "block";
+            overlay.style.display = "block";
+        });
+
+        // Close when clicking outside
+        overlay.addEventListener("click", function () {
+            popup.style.display = "none";
+            overlay.style.display = "none";
+        });
+
+        // Close on ESC key
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                popup.style.display = "none";
+                overlay.style.display = "none";
+            }
+        });
+        //////////////
+             
+
+
+
+                      $(document).ready(function () {
+
+                // Show login modal after failed login
+                var showLogin = '@TempData["ShowLoginModal"]';
+                if (showLogin === "true") {
+                    var loginModal = new bootstrap.Modal(document.getElementById('LoginModal'));
+                    loginModal.show();
+                }
+
+                // Show signup modal after error
+                var showSignUp = '@TempData["ShowSignUpModal"]';
+                if (showSignUp === "true") {
+                    var signModal = new bootstrap.Modal(document.getElementById('signUpModal'));
+                    signModal.show();
+                }
+            });
+    </script>
+    @if (TempData["OpenSignUp"] != null)
+    {
+        <script>
+            var signUpModal = new bootstrap.Modal(document.getElementById('signUpModal'));
+            signUpModal.show();
+        </script>
+    }
+
+    @if (TempData["OpenLogin"] != null)
+    {
+        <script>
+            var m = new bootstrap.Modal(document.getElementById('LoginModal'));
+            m.show();
+        </script>
+    }
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-
-
-
-
-
- 
- 

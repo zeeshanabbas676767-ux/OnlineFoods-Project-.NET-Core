@@ -1,82 +1,52 @@
-🛍️ The Way Shop (E-commerce Project)
+🍎  Organic Food Online E-Commerce 
+Organic Food Online website is a full-featured e-commerce web application built with ASP.NET Core MVC. It allows users to browse and purchase fresh organic foods like fruits, vegetables, meat, and dairy. It includes a complete Admin Panel for managing the inventory and users.
 
-A robust and feature-rich e-commerce web application built on ASP.NET Core MVC (C#). This project provides a full-stack solution including secure administration, product and category management, a customer-facing shop, and an integrated shopping cart and payment gateway.
+🚀 Key Features
+🛒 Customer Panel (Front-End)
+•	Browse Products: View fresh food items categorized by Fruits, Vegetables, Meat, etc..
+•	Search & Filter: Search for items and filter them by Category or Price Range.
+•	Shopping Cart: Add items, update quantities, or remove items. The cart is saved in the session.
+•	Checkout: Secure checkout process integrated with PayPal Sandbox.
+•	User Accounts: Sign up and Log in to manage orders.
+•	Feedback: Submit ratings and feedback about the service.
 
-🌟 Key Features
+⚙️ Admin Panel (Back-End)
+•	Dashboard: View real-time statistics (Total Accounts, Categories, and Products).
+•	Manage Products: Add, Edit, or Delete products with image upload functionality.
+•	Manage Categories: Create and organize product categories.
+•	Manage Accounts: View and manage registered user accounts.
 
-The application is structured to support both a public-facing customer store and a secure administrative dashboard.
+🛠️ Tech Stack
+•	Framework: ASP.NET Core MVC (C#)
+•	Database: Entity Framework Core (SQL Server)
+•	Architecture: Repository Pattern (Generic Repository) for clean code.
+•	Front-End: Bootstrap 5, jQuery, HTML5, CSS3.
+•	Authentication: Custom Session-Based Authentication.
 
-🛒 Customer Facing
 
-Product Catalog: Browse and view detailed information for products across various categories.
+## 🗂️ Project Structure
 
-Shopping Cart: Session-based functionality to add, view, and remove items from the cart.
+### 🔹 Home Page
+![Home](Screenshots/home.png)
 
-User Authentication: Secure sign-up and login for customer accounts.
+### 🔹 Shop Page
+![Shop](Screenshots/shop.png)
 
-Payment Integration: Seamless checkout process with PayPal Sandbox integration for processing orders.
+### 🔹 Carts View Page
+![Carts](Screenshots/cart-shop.png)
 
-General Pages: Dedicated views for About, Contact, and Order Confirmation.
+### 🔹 Products Page
+![Products](Screenshots/product.png)
 
-⚙️ Administration Panel
+### 🔹 Shopping Bag
+![Carts-Bag](Screenshots/cart.png)
 
-Secure Admin Dashboard: A separate administrative interface protected by session-based authentication.
+### 🔹 User Info
+![User-info](Screenshots/user-info.png)
 
-Product Management: Full CRUD (Create, Read, Update, Delete) operations for product listings, including image file uploads.
+### 🔹 User Dashboard
+![Dashboard](Screenshots/dashboard.png)
 
-Category Management: Full CRUD operations for organizing and managing product categories.
-
-Admin User Management: Full CRUD operations for managing administrative users/accounts.
-
-Dedicated Layout: A distinct, modern admin dashboard layout (_LayoutAdmin.cshtml) for improved management experience.
-
-🔹 Architectural Improvements
-
-Refactored Controllers to Use Generic Repositories:
-All CRUD operations in controllers no longer directly depend on Entity Framework Core.
-Instead, controllers now utilize Generic Repositories, which handle database operations through a reusable, decoupled interface.
-
-Benefits of Generic Repositories:
-
-Reduces repetitive code across multiple controllers.
-
-Makes unit testing easier by allowing mock repositories instead of a real database.
-
-Supports a clean, scalable, and maintainable architecture for future development.
-
-🛠️ Technologies Used
-
-Backend: ASP.NET Core MVC (C#)
-
-Database: Entity Framework Core (EF Core)
-
-Authentication: Session-based Authentication/Authorization (Utilizing IHttpContextAccessor)
-
----
-
-State Management: Session Storage (for Shopping Cart: mycart)
-
-Payment Gateway: PayPal Sandbox
-
----
-
-## 🗂️ Project Structure  
-
-### 🔹 User Admin
-![User Admin](Screenshots/UserAdmin.png)
-
-### 🔹 Dashboard
-![Dashboard](Screenshots/Dashboard.png)
-
-### 🔹 Carts
-![Carts](Screenshots/Carts.png)
-
-### 🔹 Products-Bag
-![Products-Bag](Screenshots/Products-Bag.png)
-
-### 🔹 Products
-![Products](Screenshots/Products.png)
-
-### 🔹 All-Products
-![All-Products](Screenshots/All-Products.png)
+### 🔹 User-Accounts
+![User-account](Screenshots/user-account.png)
 

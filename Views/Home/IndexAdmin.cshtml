@@ -1,59 +1,53 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     var Name = HttpContextAccessor.HttpContext?.Session.GetString("Admin_Name");
 }
-<div class="container-fluid" style="overflow:auto">
 
+<div class="container-fluid" style="overflow:auto">
     <h3 class="text-center user-name">👋 Hi,<strong> @Name</strong></h3>
     <hr class="mt-5" />
     <h2>Dashboard</h2>
-<div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="panel panel-back noti-box">
-            <span class="icon-box bg-color-red set-icon">
-                <i class="fa fa-envelope-o"></i>
-            </span>
-            <div class="text-box">
-                <p class="main-text">120 New</p>
-                <p class="text-muted">Messages</p>
+
+    <div class="row mt-5">
+        <!-- Users / Accounts -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-red set-icon">
+                    <i class="fa fa-user" style="font-size:30px"></i>
+                </span>
+                <div class="text-box">
+                    <h5 class="main-text">Accounts</h5>
+                    <p class="text-muted user-name">@ViewBag.TotalUsers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-green set-icon">
+                    <i class="fa fa-sitemap" style="font-size:30px"></i>
+                </span>
+                <div class="text-box">
+                    <h5 class="main-text">Categories</h5>
+                    <p class="text-muted user-name">@ViewBag.TotalCategories</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-blue set-icon">
+                    <i class="fa fa-bag-shopping" style="font-size:30px"></i>
+                </span>
+                <div class="text-box">
+                    <h5 class="main-text">Products</h5>
+                    <p class="text-muted user-name">@ViewBag.TotalProducts</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="panel panel-back noti-box">
-            <span class="icon-box bg-color-green set-icon">
-                <i class="fa fa-bars"></i>
-            </span>
-            <div class="text-box">
-                <p class="main-text">30 Tasks</p>
-                <p class="text-muted">Remaining</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="panel panel-back noti-box">
-            <span class="icon-box bg-color-blue set-icon">
-                <i class="fa fa-bell-o"></i>
-            </span>
-            <div class="text-box">
-                <p class="main-text">240 New</p>
-                <p class="text-muted">Notifications</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="panel panel-back noti-box">
-            <span class="icon-box bg-color-brown set-icon">
-                <i class="fa fa-rocket"></i>
-            </span>
-            <div class="text-box">
-                <p class="main-text">3 Orders</p>
-                <p class="text-muted">Pending</p>
-            </div>
-        </div>
-    </div>
-</div>
 </div>

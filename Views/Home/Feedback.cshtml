@@ -10,16 +10,8 @@
         box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
         transition: all 0.3s ease;
     }
-
-    .contact-box-main .container {
-        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 40px 20px;
-    }
-
     .invalid-feedback {
-        display: none; 
+        display: none;
         font-size: 0.9rem;
         color: #dc3545;
     }
@@ -38,108 +30,89 @@
         .star-rating i.active {
             color: #f4c150; /* gold color */
         }
-
-    @@keyframes popScale {
-        0% {
-            transform: translateX(-50%) scale(0.3);
-            opacity: 0;
-        }
-
-        50% {
-            transform: translateX(-50%) scale(1.1);
-            opacity: 1;
-        }
-
-        100% {
-            transform: translateX(-50%) scale(1);
-        }
-    }
 </style>
-
-<!-- Start All Title Box -->
-<div class="all-title-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Feedback</h2>
-               @*  <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active"> Feedback </li>
-                </ul> *@
-            </div>
-        </div>
-    </div>
+<!-- Single Page Header start -->
+<div class="container-fluid py-5" style="background-image:url('@Url.Content("~/3rd New Template/img/cart-page-header-img.jpg")');">
+    <h1 class="text-center text-white display-6" style="font-size:50px">Feed Back</h1>
+    @*  <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item active text-white">Shop</li>
+    </ol> *@
 </div>
-<!-- End All Title Box -->
-<!-- Start Feedback Form -->
-<div class="contact-box-main">
-    <div class="container">
-        <div class="row">
-           <div class="col-12 mx-auto" style="max-width: 550px; box-shadow: 0 12px 28px rgba(0, 123, 255, 0.25); ">
-                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-                    <h3 class="text-center text-primary mb-4">We'd Love Your Feedback!</h3>
-                    <form id="feedbackForm" novalidate>
-                        <div class="form-group mb-4">
-                            <label for="name" class="form-label fw-semibold">Your Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
-                            <div class="invalid-feedback">Name is required.</div>
-                        </div>
+<!-- Single Page Header End -->
 
-                        <div class="form-group mb-4">
-                            <label for="email" class="form-label fw-semibold">Your Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
-                            <div class="invalid-feedback">Valid email is required.</div>
-                        </div>
+<div class="container">
+    <div class="contact-box-main">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="wrapper">
+                    <div class="card border-0 rounded-4 p-4 bg-white col-12 mx-auto" style="box-shadow: 0 12px 28px rgba(0, 123, 255, 0.25); ">
+                        <h4 style="text-align:center;color:dodgerblue;font-weight:700">We'd love your Feed Back</h4>
+                        <form id="feedbackForm" novalidate>
+                            <div class="g-3" style="display:flex">
+                                <div class="form-group col-md-6 me-2">
 
-                        <div class="form-group mb-4">
-                            You must need to fill the stars for successfull feed back<br />
-                            <label class="form-label fw-semibold" style="font-size:20px">Rating</label>
+                                    <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
+                                    <div class="invalid-feedback">Name is required.</div>
+                                </div>
 
-                            <div class="star-rating d-flex gap-2">
-                                <label>
-                                    <input type="radio" name="rating" value="1" hidden />
-                                    <i class="fa-regular fa-star" data-value="1"></i> 1
-                                </label>
-                                <label>
-                                    <input type="radio" name="rating" value="2" hidden />
-                                    <i class="fa-regular fa-star" data-value="2"></i> 2
-                                </label>
-                                <label>
-                                    <input type="radio" name="rating" value="3" hidden />
-                                    <i class="fa-regular fa-star" data-value="3"></i> 3
-                                </label>
-                                <label>
-                                    <input type="radio" name="rating" value="4" hidden />
-                                    <i class="fa-regular fa-star" data-value="4"></i> 4
-                                </label>
-                                <label>
-                                    <input type="radio" name="rating" value="5" hidden />
-                                    <i class="fa-regular fa-star" data-value="5"></i> 5
-                                </label>
+                                <div class="form-group col-md-6">
+                                    @*    <label for="email" class="form-label fw-semibold">Your Email</label> *@
+                                    <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+                                    <div class="invalid-feedback">Valid email is required.</div>
+                                </div>
                             </div>
-                            <div class="invalid-feedback">Rating is required.</div>
-                        </div>
+                            <div class="form-group mb-4">
+                                @*      <label class="form-label fw-semibold" style="font-size:20px">Rating</label> *@
+
+                                <div class="star-rating d-flex gap-2">
+                                  Rating
+                                    <label>
+                                        <input type="radio" name="rating" value="1" hidden />
+                                        <i class="fa-regular fa-star" data-value="1"></i>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="rating" value="2" hidden />
+                                        <i class="fa-regular fa-star" data-value="2"></i>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="rating" value="3" hidden />
+                                        <i class="fa-regular fa-star" data-value="3"></i>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="rating" value="4" hidden />
+                                        <i class="fa-regular fa-star" data-value="4"></i>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="rating" value="5" hidden />
+                                        <i class="fa-regular fa-star" data-value="5"></i>
+                                    </label>
+                                </div>
+                                <div class="invalid-feedback">Rating is required.</div>
+                            </div>
 
 
-                        <div class="form-group mb-4">
-                            <label for="message" class="form-label fw-semibold">Your Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" required placeholder="Write your message"></textarea>
-                            <div class="invalid-feedback">Message is required.</div>
-                        </div>
+                            <div class="form-group mb-4">
+                                @*   <label for="message" class="form-label fw-semibold">Your Message</label> *@
+                                <textarea class="form-control" id="message" name="message" rows="4" required placeholder="Write your message"></textarea>
+                                <div class="invalid-feedback">Message is required.</div>
+                            </div>
 
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">Submit Feedback</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-dark text-light px-4 py-2 rounded-pill shadow-sm">Submit Feedback</button>
+                            </div>
+                        </form>
+                        <div id="successMessage" class="alert alert-success fw-semibold text-center shadow-lg" style="display:none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); z-index: 9999; padding: 20px 30px; font-size: 1.2rem; border-radius: 15px; animation: popScale 0.6s ease-out;">
+                            🎉 Thank you! Your feedback was submitted successfully!
                         </div>
-                    </form>
-                    <div id="successMessage" class="alert alert-success fw-semibold text-center shadow-lg" style="display:none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); z-index: 9999; padding: 20px 30px; font-size: 1.2rem; border-radius: 15px; animation: popScale 0.6s ease-out;">
-                        🎉 Thank you! Your feedback was submitted successfully!
                     </div>
                 </div>
-            </div> 
+            </div>
+
         </div>
     </div>
-</div>
-<!-- End Feedback Form -->
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

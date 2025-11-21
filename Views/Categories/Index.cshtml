@@ -4,20 +4,26 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<style>
+    th {
+        white-space: nowrap;
+    }
 
-    <h1 class="user-name" style="text-align:center">Category</h1>
+</style>
+    <h1 class="user-name" style="text-align:center">Categories</h1>
     <p>
         <a asp-action="Create" class="btn btn-primary">Create New</a>
     </p>
 
-    <div class="container-fluid" style="overflow:auto;max-height:300px;">
-        <table class="table">
-    <thead>
+
+<div class="table-responsive" style="overflow:auto;max-height:400px;max-width:900px;width:500px">
+    <table class="table table-hover" style="">
+        <thead class="table-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Category_Name)
+              Category Name
             </th>
-            <th>Action</th>
+            <th style="width:100px">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -27,9 +33,9 @@
                 @Html.DisplayFor(modelItem => item.Category_Name)
             </td>
                     <td class="gap-1" style="display:flex">
-                            <a asp-action="Edit" asp-route-id="@item.Category_Id" class="btn btn-success" title="Edit"><i class="fa fa-edit"></i></a>
-                            <a asp-action="Details" asp-route-id="@item.Category_Id" class="btn btn-info" title="Details"><i class="fa fa-file-alt"></i></a>
-                            <a asp-action="Delete" asp-route-id="@item.Category_Id" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
+                        <a asp-action="Edit" asp-route-id="@item.Category_Id" class="btn  btn-sm btn-success" title="Edit"><i class="fa fa-edit"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.Category_Id" class="btn  btn-sm btn-info" title="Details"><i class="fa fa-file-alt"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Category_Id" class="btn  btn-sm btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             }

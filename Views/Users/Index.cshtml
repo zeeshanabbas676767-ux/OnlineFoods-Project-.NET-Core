@@ -4,40 +4,47 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-    <h1 class="user-name" style="text-align:center">Users</h1>
+<style>
+    th {
+        white-space: nowrap;
+    }
+
+</style>
+    <h1 class="user-name" style="text-align:center">Accounts</h1>
+    <hr />
     <p>
         <a asp-action="Create" class="btn btn-primary">Create New</a>
     </p>
 
-<div class="container-fluid" style="overflow:auto;max-height:300px;">
-<table class="table">
-    <thead>
+<div class="table-responsive" style="overflow:auto;max-height:400px;max-width:900px">
+    <table class="table table-hover">
+        <thead class="table-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Admin_Name)
+                    Admin Name
+            </th>
+                <th>
+                Admin Email
+            </th>
+                <th style="max-width: 150px;">
+                Admin Password
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Admin_Email)
+               Admin Contact 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Admin_Password)
+               Admin Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Admin_Contact)
+           Is Active
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Admin_Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
+        @*     <th>
                 @Html.DisplayNameFor(model => model.ProfileImagePath)
-            </th>
+            </th> *@
             <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
+               Created At
             </th>
-            <th>Action</th>
+                <th style="min-width: 130px;">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -46,10 +53,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Admin_Name)
             </td>
-            <td>
+                    <td>
                 @Html.DisplayFor(modelItem => item.Admin_Email)
             </td>
-            <td>
+                    <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                 @Html.DisplayFor(modelItem => item.Admin_Password)
             </td>
             <td>
@@ -61,16 +68,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
-            <td>
+        @*     <td>
                 @Html.DisplayFor(modelItem => item.ProfileImagePath)
-            </td>
+            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
                         <td class="gap-1" style="display:flex">
-                            <a asp-action="Edit" asp-route-id="@item.Admin_Id" class="btn btn-success"title="Edit"><i class="fa fa-edit"></i></a>
-                            <a asp-action="Details" asp-route-id="@item.Admin_Id" class="btn btn-info" title="Details"><i class="fa fa-file-alt"></i></a>
-                            <a asp-action="Delete" asp-route-id="@item.Admin_Id" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a asp-action="Edit" asp-route-id="@item.Admin_Id" class="btn btn-sm btn-success"title="Edit"><i class="fa fa-edit"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.Admin_Id" class="btn  btn-sm btn-info" title="Details"><i class="fa fa-file-alt"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Admin_Id" class="btn  btn-sm btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
         </tr>
 }

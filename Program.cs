@@ -5,7 +5,7 @@ using NewCoreProject.Repositories;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 var builder = WebApplication.CreateBuilder(args);
-
+// Register the Shop class with the Service Container
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 // ✅ Register IHttpContextAccessor
 builder.Services.AddHttpContextAccessor();

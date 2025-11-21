@@ -2,6 +2,7 @@
 using NewCoreProject.Data;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace NewCoreProject.Repositories
 {
@@ -16,7 +17,17 @@ namespace NewCoreProject.Repositories
             _table = _db.Set<T>();
         }
 
-        public IEnumerable<T> GetAll() => _table.ToList();
+        public IEnumerable<T> GetAll(params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _table;
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return query.ToList();
+        }
 
         public T GetById(int id) => _table.Find(id);
 

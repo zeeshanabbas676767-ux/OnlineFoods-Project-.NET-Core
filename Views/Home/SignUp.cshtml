@@ -15,44 +15,39 @@
 
                     <div class="row g-3">
                         <div class="form-group col-md-4">
-                            <label asp-for="Admin_Name" class="form-label"></label>
-                            <input asp-for="Admin_Name" class="form-control" placeholder="Enter Your Full Name" required />
+                           @*  <label asp-for="Admin_Name" class="form-label"></label> *@
+                            <input asp-for="Admin_Name" class="form-control" placeholder="Enter your name" required />
                             <span asp-validation-for="Admin_Name" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label asp-for="Admin_Email" class="form-label"></label>
-                            <input asp-for="Admin_Email" class="form-control" placeholder="Enter Your Email" required />
+                            <input asp-for="Admin_Email" class="form-control" placeholder="Enter your email" required />
                             <span asp-validation-for="Admin_Email" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label asp-for="Admin_Contact" class="form-label"></label>
-                            <input asp-for="Admin_Contact" class="form-control" placeholder="Enter Your Contact Number" required />
+                            <input asp-for="Admin_Contact" class="form-control" placeholder="Enter your contact number" required />
                             <span asp-validation-for="Admin_Contact" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="row g-3">
                         <div class="form-group col-md-4 mt-4">
-                            <label asp-for="Admin_Address" class="form-label"></label>
-                            <input asp-for="Admin_Address" class="form-control" placeholder="Enter Your Address" required />
+                            <input asp-for="Admin_Address" class="form-control" placeholder="Enter your address" required />
                             <span asp-validation-for="Admin_Address" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-4 mt-4">
-                            <label class="form-label">Password</label>
                             <div class="password-wrapper">
-                                <input asp-for="Admin_Password" id="PasswordHash" class="form-control" type="password" placeholder="Enter Your Password" required />
+                                <input asp-for="Admin_Password" id="PasswordHash" class="form-control" type="password" placeholder="Enter your password" required />
                                 <i class="fa-solid fa-eye toggle-eye" id="togglePassword" title="Show Password"></i>
                             </div>
                             <span asp-validation-for="Admin_Password" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-4 mt-4">
-                            <label class="form-label">Confirm Password</label>
                             <div class="password-wrapper">
-                                <input type="password" name="passwordConfirm" id="confirmPassword" class="form-control" placeholder="Enter Your Password Again" required />
+                                <input type="password" name="passwordConfirm" id="confirmPassword" class="form-control" placeholder="Enter password again" required />
                                 <i class="fa-solid fa-eye toggle-eye" id="toggleConfirm" title="Show Password"></i>
                             </div>
                             <div class="error-message text-danger" id="errorMessage" style="display:none;">Passwords do not match</div>

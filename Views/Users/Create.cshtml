@@ -6,76 +6,75 @@
 }
 <div class="container-fluid" style="overflow:auto;">
 
-    <h1 style="text-align:center">User</h1>
+    <h1 style="text-align:center">Accounts</h1>
 <hr />
 <div class="row">
     <div class="col-md-9">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="row g-5" style="display:flex">
+                <div class="row g-3" style="display:flex">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="Admin_Name" class="control-label"></label>
+                            <h6 class="control-label">Admin Name</h6>
                             <input asp-for="Admin_Name" class="form-control" />
                             <span asp-validation-for="Admin_Name" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="Admin_Email" class="control-label"></label>
+                            <h6 class="control-label">Admin Email</h6>
                             <input asp-for="Admin_Email" class="form-control" />
                             <span asp-validation-for="Admin_Email" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                     <div class="form-group">
-                        <label asp-for="Admin_Password" class="control-label"></label>
+                            <h6 class="control-label">Admin Password</h6>
                         <input asp-for="Admin_Password" class="form-control" />
                         <span asp-validation-for="Admin_Password" class="text-danger"></span>
                     </div>
                     </div>
                 </div>
                 <div class="row g-3" style="display:flex">
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-4">
                         <div class="form-group">
-                            <label asp-for="Admin_Contact" class="control-label"></label>
+                            <h6 class="control-label">Admin Contact</h6>
                             <input asp-for="Admin_Contact" class="form-control" />
                             <span asp-validation-for="Admin_Contact" class="text-danger"></span>
                         </div>
                     </div>
                  
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-4">
                         <div class="form-group">
-                            <label asp-for="Admin_Address" class="control-label"></label>
+                            <h6 class="control-label">Admin Address</h6>
                             <input asp-for="Admin_Address" class="form-control" />
                             <span asp-validation-for="Admin_Address" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-5">
                         <div class="form-group form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                            </label>
+                                <input class="form-check-input" asp-for="IsActive" />
+                            <h6 class="control-label">Is Active</h6>
                         </div>
                     </div>
                 </div>
                 <div class="row g-3" style="display:flex">
-                    <div class="col-md-4">
+                @*     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="ProfileImagePath" class="control-label"></label>
+                            <h6 class="control-label">Profile Image Path</h6>
                             <input asp-for="ProfileImagePath" class="form-control" />
                             <span asp-validation-for="ProfileImagePath" class="text-danger"></span>
                         </div>
-                    </div>
-                    <div class="col-md-4">
+                    </div> *@
+                    <div class="col-md-4 mt-4">
                         <div class="form-group">
-                            <label asp-for="CreatedAt" class="control-label"></label>
+                            <h6 class="control-label">Created At</h6>
                             <input asp-for="CreatedAt" class="form-control" />
                             <span asp-validation-for="CreatedAt" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-4">
                     <input type="submit" value="Create" class="btn btn-primary" />
                     <button asp-action="Index" class="btn btn-secondary">Back</button>
                 </div>

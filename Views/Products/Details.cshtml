@@ -11,41 +11,41 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product_Name)
+                Product Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Product_Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product_Description)
+            Description
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Product_Description)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product_PurchasePrice)
+           Purchase Price
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Product_PurchasePrice)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product_SalePrice)
+           Sale Price
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Product_SalePrice)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product_Picture)
+           Product Picture
         </dt>
         <dd class = "col-sm-10">
                 <img src="@Url.Content(Model.Product_Picture)" alt="Product Image" style="width: 100px; height: 100px;" />
         </dd>
-        <dt class = "col-sm-2">
+       @*  <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Category.Category_Name)
-        </dd>
+        </dd> *@
     </dl>
 </div>
 <div>
