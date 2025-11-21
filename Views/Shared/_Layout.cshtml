@@ -239,18 +239,7 @@
         .user-email {
         color: #000;
         }
-        /*         .custom-navbar {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        transition: background 0.3s ease;
-        border-radius: 0 0 15px 15px;
-        }
 
-        .custom-navbar .navbar-brand img {
-        filter: drop-shadow(0 0 5px #fff);
-        } */
         .navbar {
         width: 100%;
         }
@@ -479,9 +468,6 @@
         /* The actual dropdown menu container */
         .app-user-dropdown-menu {
             width: var(--dropdown-width);
-            /* **CRITICAL FIX 1: z-index** */
-            z-index: 1060 !important; /* Higher than Bootstrap's default modal/navbar z-index (1050/1040) */
-            /* Ensure it doesn't go off-screen on small devices */
             max-width: calc(100vw - 20px); /* 20px for padding on either side */
 
             max-height: 80vh; /* Limits height, use calc if you have a fixed header */
@@ -489,14 +475,6 @@
 
             border: none; /* Relying on shadow for depth */
             border-radius: 0.75rem;
-            /* **CRITICAL FIX 2: Positioning (for dropdown-menu-end)** */
-            /* If it's still too far right, or you want it left-aligned to the toggle */
-            /* Remove 'dropdown-menu-end' from HTML and uncomment below for left-align */
-            /* left: 0; */
-            /* top: 100%; */
-            /* If 'dropdown-menu-end' is kept, you might sometimes need to nudge it */
-            /* right: 0 !important; If Bootstrap's default isn't quite right. */
-            /* transform: translateX(50%); Adjust if needed, but 'dropdown-menu-end' should handle it */
         }
 
         /* Large avatar inside the menu */
@@ -541,46 +519,6 @@
         .animated-dropdownFadeIn[data-bs-popper] {
             animation: dropdownFadeIn 0.2s ease-out;
         }
-
-
-        /* =========================================
-           Auth Buttons (Login/Signup) Styles
-           ========================================= */
-        .app-auth-buttons {
-            list-style: none;
-        }
-
-        .app-btn-auth {
-            border: 1px solid #dee2e6;
-            background-color: var(--auth-btn-bg);
-            color: #333;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem; /* Pill shape */
-            font-weight: 600;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none; /* Remove underline if it's an anchor */
-        }
-
-            .app-btn-auth:hover {
-                background-color: var(--auth-btn-hover);
-                border-color: #cdd4da;
-                transform: translateY(-1px);
-                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            }
-
-        /* Make signup button stand out slightly more */
-        .app-btn-signup {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-        }
-
-            .app-btn-signup:hover {
-                background-color: color-mix(in srgb, var(--primary-color), black 10%);
-                color: white;
-            }
     </style>
 </head>
 <!--
@@ -613,7 +551,7 @@ https://templatemo.com/tm-526-vanilla
                         <a asp-area="" asp-controller="Home" asp-action="Contact" class="custom-btn"><span style="font-size:15px">Contact</span></a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a asp-area="" asp-controller="Home" asp-action="Feedback" class="custom-btn me-3"><span style="font-size:15px">Feed back</span></a>
+                        <a asp-area="" asp-controller="Home" asp-action="Feedback" class="custom-btn me-3"><span style="font-size:15px">Feedback</span></a>
                     </li>
 
                     @await Component.InvokeAsync("CartSummary")
@@ -675,12 +613,12 @@ https://templatemo.com/tm-526-vanilla
                     }
                     else
                     {
-                        <li class="app-auth-buttons gap-2 mt-1 d-inline-flex align-items-center">
-                            <button class="app-btn-auth" data-bs-toggle="modal" data-bs-target="#LoginModal">
-                                <span><strong>LogIn</strong> <i class="fa fa-sign-in-alt ms-1"></i></span>
+                        <li class="primary-button gap-2 mt-1 d-inline-flex">
+                            <button class="download-button" data-bs-toggle="modal" data-bs-target="#LoginModal">
+                                <span><strong>LogIn</strong> <i class="icon-download"></i></span>
                             </button>
-                            <button class="app-btn-auth app-btn-signup" data-bs-toggle="modal" data-bs-target="#signUpModal">
-                                <span><strong>SignUp</strong> <i class="fa fa-user-plus ms-1"></i></span>
+                            <button class="download-button" data-bs-toggle="modal" data-bs-target="#signUpModal">
+                                <span><strong>SignUp</strong> <i class="icon-download"></i></span>
                             </button>
                         </li>
                     }
@@ -838,7 +776,6 @@ https://templatemo.com/tm-526-vanilla
 
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/3rd new template/lib/easing/easing.min.js"></script>
 	<script src="~/3rd new template/lib/waypoints/waypoints.min.js"></script>
 	<script src="~/3rd new template/lib/lightbox/js/lightbox.min.js"></script>
